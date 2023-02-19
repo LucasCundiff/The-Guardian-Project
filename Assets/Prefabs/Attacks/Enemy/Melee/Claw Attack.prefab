@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3847620830179306800}
   - component: {fileID: 2992665335681379463}
   - component: {fileID: 8158815770288118136}
-  - component: {fileID: 1989465638067691276}
+  - component: {fileID: 3473767426160781599}
   - component: {fileID: 5358438375006202560}
   m_Layer: 0
   m_Name: Claw Attack
@@ -85,7 +85,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1989465638067691276
+--- !u!114 &3473767426160781599
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -98,9 +98,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackName: Claw
-  attackTime: 1
+  attackTime: 0.75
   user: {fileID: 0}
-  damage: 3
+  damage: 5
 --- !u!65 &5358438375006202560
 BoxCollider:
   m_ObjectHideFlags: 0

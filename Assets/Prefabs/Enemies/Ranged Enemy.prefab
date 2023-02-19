@@ -321,7 +321,7 @@ MonoBehaviour:
   meleeAttackDistance: 3
   meleeAttackTable:
   - Weight: 2
-    Attack: {fileID: 786139376247526035}
+    Attack: {fileID: 2396373482210485376}
 --- !u!1 &1634057668620150694
 GameObject:
   m_ObjectHideFlags: 0
@@ -750,6 +750,11 @@ PrefabInstance:
       propertyPath: user
       value: 
       objectReference: {fileID: 1634057668600800347}
+    - target: {fileID: 3473767426160781599, guid: fe1934ee86a6c8a47b6001bdc923f36c,
+        type: 3}
+      propertyPath: user
+      value: 
+      objectReference: {fileID: 1634057668600800347}
     - target: {fileID: 3847620830179306800, guid: fe1934ee86a6c8a47b6001bdc923f36c,
         type: 3}
       propertyPath: m_RootOrder
@@ -813,9 +818,9 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: fe1934ee86a6c8a47b6001bdc923f36c, type: 3}
---- !u!114 &786139376247526035 stripped
+--- !u!114 &2396373482210485376 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1989465638067691276, guid: fe1934ee86a6c8a47b6001bdc923f36c,
+  m_CorrespondingSourceObject: {fileID: 3473767426160781599, guid: fe1934ee86a6c8a47b6001bdc923f36c,
     type: 3}
   m_PrefabInstance: {fileID: 1257891802148539807}
   m_PrefabAsset: {fileID: 0}

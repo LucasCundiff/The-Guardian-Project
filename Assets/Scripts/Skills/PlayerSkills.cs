@@ -23,16 +23,18 @@ public class PlayerSkills : MonoBehaviour
 		}
 	}
 
-	public int StartingSoulPoints = 20;
+	public int StartingSoulPoints = 1;
+	public int soulPointsPerLevel = 1;
 	public SkillSlot DragSlot;
 
 	private List<SkillSlot> _usedSlots = new List<SkillSlot>();
 
-	[SerializeField] Transform skillsParent;
+	[SerializeField] PlayerLevel playerLevel;
 
 	public void Awake()
 	{
 		SoulPoints = StartingSoulPoints;
+		playerLevel.OnLevelUpEvent += () => SoulPoints += soulPointsPerLevel;
 		DragSlot.gameObject.SetActive(false);
 
 		IntializeSkills();

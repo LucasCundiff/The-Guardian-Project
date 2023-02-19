@@ -17,6 +17,7 @@ public class PlayerActionController : MonoBehaviour
 	{
 		playerInputManager.PlayerInput.Player.ActionStateToggle.performed += ToggleActionState;
 		ActionBar.OnActionSlotChanged += SetActionSlot;
+		LoadAction();
 	}
 
 	private void ToggleActionState(InputAction.CallbackContext obj)

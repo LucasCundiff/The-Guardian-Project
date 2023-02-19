@@ -22,6 +22,8 @@ public class ActionBar : MonoBehaviour
 		PlayerInputManager.PlayerInput.Player.Action2.performed += input => SetCurrentActionSlot(input, 1);
 		PlayerInputManager.PlayerInput.Player.Action3.performed += input => SetCurrentActionSlot(input, 2);
 		PlayerInputManager.PlayerInput.Player.Action4.performed += input => SetCurrentActionSlot(input, 3);
+
+		UpdateActionBar();
 	}
 
 	private void UpdateActionBar()

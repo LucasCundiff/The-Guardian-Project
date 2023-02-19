@@ -1,9 +1,16 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerInputManager : MonoBehaviour
 {
 	public PlayerInput PlayerInput;
+	public CharacterStats Player;
+
+	private void Start()
+	{
+		Player.OnDeathEvent += () => PlayerInput.Player.Disable();
+	}
 
 	private void OnEnable()
 	{
