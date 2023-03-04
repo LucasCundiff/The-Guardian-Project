@@ -11,7 +11,7 @@ public class MeleeAttack : Attack
 	public float DamageMultiplier;
 	[Range(0, 100)]
 	public int ElementalProcChance;
-	public List<StatusEffect> StatusEffects;
+	public List<OnHitAttackEffect> StatusEffects;
 
 	protected float currentDamage;
 	protected IDamageable currentTarget;
@@ -79,7 +79,7 @@ public class MeleeAttack : Attack
 
 	protected virtual void CalculateDamage()
 	{
-		currentDamage = currentAction.Damage * DamageMultiplier;
+		currentDamage = currentAction.Power * DamageMultiplier;
 
 		if (Random.Range(0, 101) <= currentAction.CriticalChance)
 		{
@@ -99,7 +99,7 @@ public class MeleeAttack : Attack
 
 		if (_intCache <= ElementalProcChance)
 		{
-			foreach (StatusEffect effect in StatusEffects)
+			foreach (OnHitAttackEffect effect in StatusEffects)
 			{
 				effect.InitializeEffect(currentTarget, currentDamage, currentUser);
 			}

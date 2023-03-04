@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class HolyEffect : StatusEffect
+public class HolyEffect : OnHitAttackEffect
 {
 	[Range(.05f, 0.2f)]
 	public float DrainArmorPercent;

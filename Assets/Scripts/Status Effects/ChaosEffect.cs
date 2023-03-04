@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class ChaosEffect : StatusEffect
+public class ChaosEffect : OnHitAttackEffect
 {
 	[Range(5, 30)]
 	public int EffectDuration;

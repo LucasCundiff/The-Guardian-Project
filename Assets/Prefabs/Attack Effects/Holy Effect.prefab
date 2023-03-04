@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 654a6ad3d65e95740a12af86d428bebf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EffectStrength: 0.05
+  DrainArmorPercent: 0.05
   EffectDuration: 10

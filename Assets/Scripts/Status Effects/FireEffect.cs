@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class FireEffect : StatusEffect
+public class FireEffect : OnHitAttackEffect
 {
 	[Range(.05f, .2f)]
 	public float DamageHealthPercent;

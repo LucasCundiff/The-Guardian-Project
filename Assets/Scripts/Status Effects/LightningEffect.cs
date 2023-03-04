@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class LightningEffect : StatusEffect
+public class LightningEffect : OnHitAttackEffect
 {
 	[Range(0.1f, 2f)]
 	public float DamageMultiplier;

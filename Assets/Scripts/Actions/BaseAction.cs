@@ -6,13 +6,13 @@ public class BaseAction : MonoBehaviour
 {
 	public CharacterStats User { get; private set; }
 
-	public Attack Primary;
+	public BaseAttack Primary;
 	public Attack Secondary;
 	public Attack Tertiary;
 	public Attack Quaternary;
 
 	[Range(0, 255)]
-	public int Damage;
+	public int Power;
 	[Range(1, 100)]
 	public int CriticalChance;
 	[Range(1f, 10f)]

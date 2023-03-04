@@ -168,6 +168,15 @@ public class CharacterStats : MonoBehaviour, IDamageable
 	{
 		if (damage > 0)
 		{
+			float damageToTake = damage;
+
+			if (HealthShield > 0)
+			{
+				damageToTake -= healthShield;
+				HealthShield -= damage;
+			}
+
+			damageToTake = Mathf.Clamp(damageToTake - damageToTake * Stats[7].CurrentValue * 0.002f, 1f, Mathf.Infinity);
 			CurrentHealth -= damage;
 
 			if (currentHealth <= 0)

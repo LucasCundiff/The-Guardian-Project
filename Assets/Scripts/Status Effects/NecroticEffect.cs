@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class NecroticEffect : StatusEffect
+public class NecroticEffect : OnHitAttackEffect
 {
 	[Range(10, 60)]
 	public int EffectDuration;

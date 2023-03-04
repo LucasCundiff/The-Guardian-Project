@@ -49,11 +49,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a14f203086115cb4aaf8a13e9aa0d7b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Primary: {fileID: 4553788635307765699}
+  Primary: {fileID: 0}
   Secondary: {fileID: 4553788635275901181}
   Tertiary: {fileID: 4553788636780044638}
   Quaternary: {fileID: 4553788635596638845}
-  Damage: 20
+  Power: 8
   CriticalChance: 20
   CriticalMultiplier: 2
 --- !u!1 &4553788637126456886
@@ -230,18 +230,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 710137435600236762}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4553788635307765699 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3956593276308578073, guid: 9d732b222b665854880adc875e8d6128,
-    type: 3}
-  m_PrefabInstance: {fileID: 710137435600236762}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bf55ccf551e7b042b2939abb5b7e068, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2865097078494378012
 PrefabInstance:
   m_ObjectHideFlags: 0

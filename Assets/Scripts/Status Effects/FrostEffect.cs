@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class FrostEffect : StatusEffect
+public class FrostEffect : OnHitAttackEffect
 {
 	[Range(10f, 60f)]
 	public int EffectDuration;

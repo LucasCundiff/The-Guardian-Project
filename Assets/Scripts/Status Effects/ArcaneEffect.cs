@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class ArcaneEffect : StatusEffect
+public class ArcaneEffect : OnHitAttackEffect
 {
 	[Range(10f, 60f)]
 	public int EffectDuration;

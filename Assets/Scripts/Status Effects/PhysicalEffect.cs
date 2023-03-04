@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PhysicalEffect : StatusEffect
+public class PhysicalEffect : OnHitAttackEffect
 {
 	[Range(.1f, 2f)]
 	public float DamageMultipler;
