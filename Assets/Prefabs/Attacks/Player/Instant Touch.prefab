@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3956593276308578074}
   - component: {fileID: 1261102549601030058}
   m_Layer: 0
-  m_Name: Jab New
+  m_Name: Instant Touch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -11,7 +11,7 @@ public class TouchInstantAttack : BaseInstantAttack
 		{
 			var attackPower = DeterminePower();
 
-			foreach (OnHitAttackEffect hitEffect in onTargetHitEffect)
+			foreach (OnHitAttackEffect hitEffect in onTargetHitEffects)
 			{
 				hitEffect.InitializeEffect(target, attackPower, CurrentUser);
 			}

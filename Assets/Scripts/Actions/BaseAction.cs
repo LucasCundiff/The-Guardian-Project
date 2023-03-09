@@ -7,7 +7,7 @@ public class BaseAction : MonoBehaviour
 	public CharacterStats User { get; private set; }
 
 	public BaseAttack Primary;
-	public Attack Secondary;
+	public BaseAttack Secondary;
 	public Attack Tertiary;
 	public Attack Quaternary;
 

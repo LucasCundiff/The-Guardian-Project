@@ -13,8 +13,9 @@ public class BaseAttack : MonoBehaviour
 	[SerializeField] protected float attackDuration;
 	[Range(.05f, 12.5f)]
 	[SerializeField] protected float PowerMultiplier;
-	[SerializeField] protected List<OnHitAttackEffect> onTargetHitEffect = new List<OnHitAttackEffect>();
+	[SerializeField] protected List<OnHitAttackEffect> onTargetHitEffects = new List<OnHitAttackEffect>();
 	public CharacterStats CurrentUser { get; private set; }
+	public List<OnHitAttackEffect> OnTargetHitEffects { get { return onTargetHitEffects; } }
 	protected BaseAction currentAction;
 	protected InputAction attackInput;
 
