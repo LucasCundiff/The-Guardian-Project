@@ -8,8 +8,8 @@ public class BaseAction : MonoBehaviour
 
 	public BaseAttack Primary;
 	public BaseAttack Secondary;
-	public Attack Tertiary;
-	public Attack Quaternary;
+	public BaseAttack Tertiary;
+	public BaseAttack Quaternary;
 
 	[Range(0, 255)]
 	public int Power;

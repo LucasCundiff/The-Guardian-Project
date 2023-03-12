@@ -9,6 +9,8 @@ public class ProjectileAmmo : MonoBehaviour
 	[SerializeField] Rigidbody rb;
 	[SerializeField] ForceMode forceType;
 	[SerializeField] float projectileSpeed;
+	[SerializeField] float projectileDuration = 10f;
+	[SerializeField] List<int> stopProjectileLayers = new List<int> { 6, 7 };
 
 	protected CharacterStats currentUser;
 	protected BaseAttack currentBaseAttack;
@@ -21,9 +23,17 @@ public class ProjectileAmmo : MonoBehaviour
 		currentBaseAttack = baseAttack;
 
 		rb.AddRelativeForce(projectileDirection * projectileSpeed, forceType);
+		StartCoroutine(SelfDestruct());
 	}
 
-	private void OnTriggerEnter(Collider other)
+	protected IEnumerator SelfDestruct()
+	{
+		yield return new WaitForSeconds(projectileDuration);
+
+		Destroy(gameObject);
+	}
+
+	protected void OnTriggerEnter(Collider other)
 	{
 		var target = other.GetComponent<IDamageable>();
 
@@ -35,8 +45,15 @@ public class ProjectileAmmo : MonoBehaviour
 			{
 				hitAttackEffect.InitializeEffect(target, power, currentUser);
 			}
+
+			Destroy(gameObject);
 		}
 
-		Destroy(gameObject);
+		foreach (int layerValue in stopProjectileLayers)
+		{
+			if (layerValue == other.gameObject.layer)
+				Destroy(gameObject);
+		}
+
 	}
 }

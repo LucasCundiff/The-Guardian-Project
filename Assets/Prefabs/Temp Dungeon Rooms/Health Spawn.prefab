@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2683291892923140800}
   - component: {fileID: 2683291892923140801}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cross Object
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ GameObject:
   - component: {fileID: 2683291893524169761}
   - component: {fileID: 2683291893524169760}
   - component: {fileID: 2683291893524169763}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cross Part 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,7 +159,7 @@ GameObject:
   - component: {fileID: 2683291894008564103}
   - component: {fileID: 2683291894008564102}
   - component: {fileID: 2683291894008564097}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cross Part 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,7 +253,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2683291894088400638}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Health Spawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -290,7 +290,7 @@ GameObject:
   - component: {fileID: 2683291894822691343}
   - component: {fileID: 2683291894822691342}
   - component: {fileID: 1560848244778758412}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -391,4 +391,4 @@ MonoBehaviour:
   factionToHeal: {fileID: 11400000, guid: c5d98a877005d1e4e8993f5b538f7141, type: 2}
   healAmount: 50
   cooldownTime: 10
-  canHeal: 0
+  onCooldown: 0

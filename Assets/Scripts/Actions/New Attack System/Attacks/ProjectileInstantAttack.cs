@@ -9,10 +9,10 @@ public class ProjectileInstantAttack : BaseInstantAttack
 
 	protected override void StartAttack()
 	{
+		base.StartAttack();
 		var ammo = Instantiate(projectileAmmo, spawnPoint, false).GetComponent<ProjectileAmmo>();
 		ammo.transform.SetParent(null);
 		ammo.InitializeAmmo(CurrentUser, this);
-		base.StartAttack();
 	}
 
 	protected override IEnumerator EndAttack()

@@ -61,3 +61,15 @@ public enum ActionState
 	Skill,
 }
 
+public enum AIState
+{
+	Idle,
+	Searching,
+	Wander,
+	Follow,
+	Catchup,
+	Chase,
+	Attack,
+	Dead,
+	None,
+}

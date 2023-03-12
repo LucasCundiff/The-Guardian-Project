@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateMachine 
+public class AIStateMachineArchived 
 {
 	protected Dictionary<Type, List<Transition>> transitions = new Dictionary<Type, List<Transition>>();
 	protected List<Transition> currentTransitions = new List<Transition>();

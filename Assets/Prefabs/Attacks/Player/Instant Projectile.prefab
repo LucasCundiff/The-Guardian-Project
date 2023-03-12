@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5332743575026183294
 Transform:
   m_ObjectHideFlags: 0
@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1404988307981343838}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.4}
+  m_LocalPosition: {x: 0, y: 0, z: 0.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -77,12 +77,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StaminaCost: 0
-  ManaCost: 2
-  attackDuration: 0
+  ManaCost: 10
+  attackDuration: 0.75
   PowerMultiplier: 1.05
   onTargetHitEffects:
   - {fileID: 6935310698061611310, guid: f8fc7c1aaafb3ae40a15af9114699650, type: 3}
   - {fileID: 1212816294735447775, guid: b667244663bd53c40bd6e11c31ff5e24, type: 3}
   projectileAmmo: {fileID: 2280249818751201934, guid: 174d3e27a242e4141a0b5263625ff20b,
     type: 3}
-  spawnPoint: {fileID: 5332743575026183294}
+  spawnPoint: {fileID: 3956593276308578072}

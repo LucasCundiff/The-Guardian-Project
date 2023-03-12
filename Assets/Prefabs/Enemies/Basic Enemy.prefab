@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 615241170664791357}
   - component: {fileID: 1287798392402804804}
   - component: {fileID: 6883400806387477544}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Health Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,7 +81,7 @@ GameObject:
   - component: {fileID: 1739527172075071452}
   - component: {fileID: 1739527172075071450}
   - component: {fileID: 1739527172075071453}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Basic Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -278,7 +278,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 8802404583269925497}
   - component: {fileID: 1961812276155770235}
   - component: {fileID: 4985621588892954238}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Stat Bar Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -373,7 +373,7 @@ GameObject:
   - component: {fileID: 3990307104828030019}
   - component: {fileID: 1710565260356017317}
   - component: {fileID: 2353627964287888283}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Stat Bar Empty
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -450,7 +450,7 @@ GameObject:
   - component: {fileID: 1741847404792825764}
   - component: {fileID: 1230085458464464572}
   - component: {fileID: 8193205011603539193}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Eyes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -547,7 +547,7 @@ GameObject:
   - component: {fileID: 5136469399440646806}
   - component: {fileID: 4553304048158079540}
   - component: {fileID: 5530070005050170381}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -715,6 +715,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Claw Attack
       objectReference: {fileID: 0}
+    - target: {fileID: 4426057563971835955, guid: fe1934ee86a6c8a47b6001bdc923f36c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: fe1934ee86a6c8a47b6001bdc923f36c, type: 3}
@@ -753,6 +758,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Lunge Attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 7054529697779129254, guid: b8e1d1dcee8d7904f9e32598a22e2e75,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8941794232759749321, guid: b8e1d1dcee8d7904f9e32598a22e2e75,
         type: 3}

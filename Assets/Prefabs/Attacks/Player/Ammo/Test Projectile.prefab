@@ -130,4 +130,6 @@ MonoBehaviour:
   projectileDirection: {x: 0, y: 0, z: 1}
   rb: {fileID: 3865026485229786404}
   forceType: 1
-  projectileSpeed: 4
+  projectileSpeed: 15
+  projectileDuration: 10
+  stopProjectileLayers: 0600000007000000

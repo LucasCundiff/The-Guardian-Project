@@ -134,6 +134,14 @@ public class PlayerItemManager : MonoBehaviour
 				}
 			}
 		}
+		else if (_item is ConsumableItem consumableItem)
+		{
+			consumableItem.UseItem(PlayerStats);
+
+			Inventory.RemoveItem(consumableItem);
+
+			consumableItem.Destroy();
+		}
 	}
 
 	private void RemoveItemFromArmor(ItemSlot itemSlot)

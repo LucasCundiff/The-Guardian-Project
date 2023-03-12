@@ -13953,6 +13953,7 @@ GameObject:
   - component: {fileID: 1681042651}
   - component: {fileID: 1681042650}
   - component: {fileID: 1681042654}
+  - component: {fileID: 1681042655}
   m_Layer: 0
   m_Name: --Player--
   m_TagString: Player
@@ -13968,7 +13969,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1681042640}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -58, y: 1.478, z: 3.3}
+  m_LocalPosition: {x: -57.8, y: 1.478, z: 6.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -14088,7 +14089,7 @@ MonoBehaviour:
   - StatName: Regeneration
     BaseValue: 0.5
   - StatName: Movement Speed
-    BaseValue: 5
+    BaseValue: 10
   IsDead: 0
 --- !u!114 &1681042648
 MonoBehaviour:
@@ -14126,6 +14127,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3695ae15dfd2cf94c91e3feb2bf41f9c, type: 2}
   - {fileID: 11400000, guid: 60d16c21566e5cb4a96c6607675c4efb, type: 2}
   - {fileID: 11400000, guid: 73f5fec013d56164aaf1d031b1830424, type: 2}
+  - {fileID: 11400000, guid: 3b6c0ff38a5e46d42a3ebd62c65aa4ba, type: 2}
+  - {fileID: 11400000, guid: d3917af2b2571b94cbe52edb95c60248, type: 2}
+  - {fileID: 11400000, guid: 3b6c0ff38a5e46d42a3ebd62c65aa4ba, type: 2}
+  - {fileID: 11400000, guid: d3917af2b2571b94cbe52edb95c60248, type: 2}
+  - {fileID: 11400000, guid: cea6a1f2f1deaa443ab8917b3efb2d9d, type: 2}
   StartingArmor:
   - {fileID: 11400000, guid: 74e8c4f08007bcb4283a277a249d6485, type: 2}
   - {fileID: 11400000, guid: 2686abdaa6d1f8145aab74aef6c80edd, type: 2}
@@ -14302,6 +14308,19 @@ MonoBehaviour:
   unarmedAction: {fileID: 4553788636521669766, guid: 29e31f0b61e46c643b57dc950706af76,
     type: 3}
   actionSpawnTransform: {fileID: 1659121006}
+--- !u!114 &1681042655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1681042640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61b4a304e3b9f854cb3d353cce4e19c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  user: {fileID: 1681042647}
 --- !u!1001 &1686271325
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -14,15 +14,15 @@ public class ActionBarSetup : MonoBehaviour
 
 	public void Awake()
 	{
-		characterWeapons.OnWeaponEquippedEvent += EventHelper;
-		characterWeapons.OnWeaponUnequippedEvent += EventHelper;
+		characterWeapons.OnWeaponEquippedEvent += UpdateWeaponsEventHelper;
+		characterWeapons.OnWeaponUnequippedEvent += UpdateWeaponsEventHelper;
 
 		foreach (ActionSetupSlot setupSlot in ActionSetupSlots)
 			setupSlot.OnSkillDroppedEvent += DropSkillOnActionSlot;
 
 	}
 
-	private void EventHelper(Item obj)
+	private void UpdateWeaponsEventHelper(Item obj)
 	{
 		UpdateActionSlotsWeapons();
 	}

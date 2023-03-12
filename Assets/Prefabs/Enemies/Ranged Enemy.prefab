@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1114772367635723783}
   - component: {fileID: 7851652090973737324}
   - component: {fileID: 6555438006310499444}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ranged Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 763077970698945659}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.995, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.3, z: -0.57}
+  m_LocalScale: {x: 0.1, y: 0.3, z: 0.57}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1634057668600800343}
@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 1634057668600800351}
   - component: {fileID: 1634057668600800344}
   - component: {fileID: 4899246594812973014}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ranged Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,7 +285,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -314,11 +314,11 @@ MonoBehaviour:
   maxIdleTime: 8
   wanderRadius: 15
   targetChaseDistance: 22
-  targetAttackDistance: 16
+  targetAttackDistance: 13
   attackTable:
   - Weight: 2
     Attack: {fileID: 6462207963163292956}
-  meleeAttackDistance: 3
+  meleeAttackDistance: 2
   meleeAttackTable:
   - Weight: 2
     Attack: {fileID: 2396373482210485376}
@@ -333,7 +333,7 @@ GameObject:
   - component: {fileID: 1634057668620150693}
   - component: {fileID: 1634057668620150699}
   - component: {fileID: 1634057668620150692}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Stat Bar Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -410,7 +410,7 @@ GameObject:
   - component: {fileID: 1634057668702780917}
   - component: {fileID: 1634057668702780918}
   - component: {fileID: 1634057668702780919}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -511,7 +511,7 @@ GameObject:
   - component: {fileID: 1634057668751053630}
   - component: {fileID: 1634057668751053628}
   - component: {fileID: 1634057668751053629}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Stat Bar Empty
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -587,7 +587,7 @@ GameObject:
   - component: {fileID: 1634057669585723937}
   - component: {fileID: 1634057669585723943}
   - component: {fileID: 1634057669585723942}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Health Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -652,7 +652,7 @@ GameObject:
   - component: {fileID: 1631733022799971361}
   - component: {fileID: 2277546255338790201}
   - component: {fileID: 9168555858602018684}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Eyes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -815,6 +815,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Claw Attack
       objectReference: {fileID: 0}
+    - target: {fileID: 4426057563971835955, guid: fe1934ee86a6c8a47b6001bdc923f36c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: fe1934ee86a6c8a47b6001bdc923f36c, type: 3}
@@ -908,6 +913,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Acid Spit
+      objectReference: {fileID: 0}
+    - target: {fileID: 4476018519038326391, guid: 56a724e29953a5a4a85de42fa7704e43,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

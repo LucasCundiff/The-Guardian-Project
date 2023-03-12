@@ -4,22 +4,9 @@ using System.Collections.Generic;
 using Random = UnityEngine.Random;
 using System.Collections;
 
-public enum EnemyState
-{
-	Idle,
-	Searching,
-	Wander,
-	Chase,
-	Attack,
-	Dead,
-	None,
-}
 
-public class EnemyAI : MonoBehaviour
+public class EnemyAI : AIStateMachine
 {
-	[SerializeField] protected EnemyState currentState;
-	[SerializeField] protected CharacterStats user;
-	[SerializeField] protected NavMeshAgent navAgent;
 	[SerializeField] protected MeshRenderer meshRenderer;
 	[SerializeField] protected Material aliveMaterial, deadMaterial;
 	[SerializeField] protected float maxIdleTime;
@@ -31,7 +18,6 @@ public class EnemyAI : MonoBehaviour
 	protected float currentIdleTime;
 	protected float currentMaxIdleTime;
 	protected bool isAttacking;
-	protected CharacterStats target;
 
 	protected virtual void Start()
 	{
@@ -50,68 +36,68 @@ public class EnemyAI : MonoBehaviour
 		}
 	}
 
-	protected virtual void Update()
+	protected override void Update()
 	{
 		currentState = GetNextState();
 		RunCurrentState();
 	}
 
-	protected virtual void EnterNewState(EnemyState newState)
+	protected override void EnterNewState(AIState newState)
 	{
 		switch (newState)
 		{
-			case EnemyState.Idle:
+			case AIState.Idle:
 				currentMaxIdleTime = Random.Range(1, maxIdleTime);
 				break;
-			case EnemyState.Searching:
+			case AIState.Searching:
 				break;
-			case EnemyState.Wander:
+			case AIState.Wander:
 				break;
-			case EnemyState.Chase:
+			case AIState.Chase:
 				break;
-			case EnemyState.Attack:
+			case AIState.Attack:
 				break;
-			case EnemyState.Dead:
+			case AIState.Dead:
 				meshRenderer.material = deadMaterial;
 				break;
-			case EnemyState.None:
+			case AIState.None:
 				break;
 			default:
 				break;
 		}
 	}
 
-	protected virtual void ExitOldState()
+	protected override void ExitOldState()
 	{
 		switch (currentState)
 		{
-			case EnemyState.Idle:
+			case AIState.Idle:
 				currentIdleTime = 0f;
 				break;
-			case EnemyState.Searching:
+			case AIState.Searching:
 				break;
-			case EnemyState.Wander:
+			case AIState.Wander:
 				break;
-			case EnemyState.Chase:
+			case AIState.Chase:
 				navAgent.destination = transform.position;
 				break;
-			case EnemyState.Attack:
+			case AIState.Attack:
 				break;
-			case EnemyState.Dead:
+			case AIState.Dead:
 				meshRenderer.material = aliveMaterial;
 				break;
-			case EnemyState.None:
+			case AIState.None:
 				break;
 			default:
 				break;
 		}
 	}
 
-	protected virtual EnemyState GetNextState()
+	protected override AIState GetNextState()
 	{
 		var newState = GetTranstionFromAnyState();
 
-		if (newState == EnemyState.None)
+		if (newState == AIState.None)
 			newState = GetTransitionFromCurrentState();
 
 		if (newState != currentState)
@@ -119,30 +105,30 @@ public class EnemyAI : MonoBehaviour
 			ExitOldState();
 			EnterNewState(newState);
 		}
-
+ 
 		return newState;
 	}
 
-	protected virtual void RunCurrentState()
+	protected override void RunCurrentState()
 	{
 		switch (currentState)
 		{
-			case EnemyState.Idle:
+			case AIState.Idle:
 				RunIdleState();
 				break;
-			case EnemyState.Searching:
+			case AIState.Searching:
 				RunSearchState();
 				break;
-			case EnemyState.Wander:
+			case AIState.Wander:
 				RunWanderState();
 				break;
-			case EnemyState.Chase:
+			case AIState.Chase:
 				RunChaseState();
 				break;
-			case EnemyState.Attack:
+			case AIState.Attack:
 				RunAttackState();
 				break;
-			case EnemyState.None:
+			case AIState.None:
 				break;
 			default:
 				break;
@@ -163,10 +149,7 @@ public class EnemyAI : MonoBehaviour
 		navAgent.SetDestination(hit.position);
 	}
 
-	protected virtual void RunWanderState()
-	{
-
-	}
+	protected virtual void RunWanderState() { }
 
 	protected virtual void RunChaseState()
 	{
@@ -188,10 +171,7 @@ public class EnemyAI : MonoBehaviour
 		}
 	}
 
-	protected virtual void RunDeadState()
-	{
-
-	}
+	protected virtual void RunDeadState() { }
 
 	protected virtual EnemyAttack GetNextAttack()
 	{
@@ -207,54 +187,54 @@ public class EnemyAI : MonoBehaviour
 		isAttacking = false;
 	}
 
-	protected virtual EnemyState GetTranstionFromAnyState()
+	protected override AIState GetTranstionFromAnyState()
 	{
-		if (DeadAnyTransition()) return EnemyState.Dead;
-		if (AttackAnyTransition()) return EnemyState.Attack;
-		if (ChaseAnyTransition()) return EnemyState.Chase;
-		return EnemyState.None;
+		if (DeadAnyTransition()) return AIState.Dead;
+		if (AttackAnyTransition()) return AIState.Attack;
+		if (ChaseAnyTransition()) return AIState.Chase;
+		return AIState.None;
 	}
 
-	protected virtual EnemyState GetTransitionFromCurrentState()
+	protected override AIState GetTransitionFromCurrentState()
 	{
 		switch (currentState)
 		{
-			case EnemyState.Idle:
+			case AIState.Idle:
 				return IdleStateTransition();
 
-			case EnemyState.Wander:
+			case AIState.Wander:
 				return WanderStateTransition();
 
-			case EnemyState.Searching:
+			case AIState.Searching:
 				return SearchStateTransition();
 
 			default:
-				return EnemyState.Idle;
+				return AIState.Idle;
 		}
 	}
 
-	protected virtual EnemyState IdleStateTransition()
+	protected virtual AIState IdleStateTransition()
 	{
 		if (currentIdleTime > currentMaxIdleTime)
-			return EnemyState.Searching;
+			return AIState.Searching;
 
-		return EnemyState.Idle;
+		return AIState.Idle;
 	}
 
-	protected virtual EnemyState SearchStateTransition()
+	protected virtual AIState SearchStateTransition()
 	{
 		if (navAgent.hasPath)
-			return EnemyState.Wander;
+			return AIState.Wander;
 		else
-			return EnemyState.Searching;
+			return AIState.Searching;
 	}
 
-	protected virtual EnemyState WanderStateTransition()
+	protected virtual AIState WanderStateTransition()
 	{
 		if (navAgent.isPathStale || !navAgent.hasPath)
-			return EnemyState.Idle;
+			return AIState.Idle;
 
-		return EnemyState.Wander;
+		return AIState.Wander;
 	}
 
 	protected virtual bool ChaseAnyTransition()
@@ -270,27 +250,5 @@ public class EnemyAI : MonoBehaviour
 	protected virtual bool DeadAnyTransition()
 	{
 		return user.IsDead;
-	}
-
-	protected float DetermineDistance()
-	{
-		CharacterStats currentTarget = null;
-		var vectorDistance = Vector3.zero;
-		var closestDistance = Mathf.Infinity;
-
-		foreach (CharacterStats possibleTarget in CharacterTracker.Instance.AllCharacters)
-		{
-			if (possibleTarget?.Faction == user?.Faction || possibleTarget?.IsDead == true) continue;
-
-			vectorDistance = possibleTarget.transform.position - transform.position;
-			if (vectorDistance.magnitude < closestDistance)
-			{
-				closestDistance = vectorDistance.magnitude;
-				currentTarget = possibleTarget;
-			}
-		}
-
-		target = currentTarget;
-		return closestDistance;
 	}
 }

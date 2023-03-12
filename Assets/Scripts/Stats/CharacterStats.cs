@@ -179,7 +179,7 @@ public class CharacterStats : MonoBehaviour, IDamageable
 			damageToTake = Mathf.Clamp(damageToTake - damageToTake * Stats[7].CurrentValue * 0.002f, 1f, Mathf.Infinity);
 			CurrentHealth -= damage;
 
-			if (currentHealth <= 0)
+			if (CurrentHealth <= 0)
 				Die();
 
 			return true;
@@ -188,9 +188,24 @@ public class CharacterStats : MonoBehaviour, IDamageable
 		return false;
 	}
 
+	public bool Heal(float healAmount)
+	{
+		if (healAmount > 0)
+		{
+			CurrentHealth += healAmount;
+			return true;
+		}
+
+		return false;
+	}
+
 	public virtual void Die()
 	{
-		IsDead = true;
-		OnDeathEvent?.Invoke();
+		if (!IsDead)
+		{
+			IsDead = true;
+			OnDeathEvent?.Invoke();
+		}
 	}
+
 }

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bea1965925145147811b6ae91990a40, type: 3}
+  m_Name: Increase Stamina
+  m_EditorClassIdentifier: 
+  EffectDuration: 10
+  HealthModifyAmount: 0
+  ManaModifyAmount: 0
+  StaminaModifyAmount: 200
+  MeleeProficiencyModifyAmount: 0
+  RangedProficiencyModifyAmount: 0
+  ManaProficiencyModifyAmount: 0
+  StaminaProficiencyModifyAmount: 0
+  ArmorModifyAmount: 0
+  ResistanceModifyAmount: 0
+  RegenerationModifyAmount: 0
+  MovementSpeedModifyAmount: 0

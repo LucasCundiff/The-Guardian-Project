@@ -114,5 +114,5 @@ MonoBehaviour:
   ManaCost: 0
   attackDuration: 1
   PowerMultiplier: 1.25
-  onTargetHitEffect:
+  onTargetHitEffects:
   - {fileID: 6935310698061611310, guid: f8fc7c1aaafb3ae40a15af9114699650, type: 3}
