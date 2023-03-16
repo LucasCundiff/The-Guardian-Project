@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1797094854662461764
+--- !u!1 &3956593276308578071
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,49 +8,48 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1797094854662461765}
-  - component: {fileID: 1797094854662461761}
-  - component: {fileID: 1797094854662461760}
-  - component: {fileID: 1797094854662461763}
-  - component: {fileID: 1797094854662461762}
-  - component: {fileID: 1797094854662461774}
+  - component: {fileID: 3956593276308578072}
+  - component: {fileID: 514792776577590249}
+  - component: {fileID: -5315346385252609346}
+  - component: {fileID: 4652876108625741884}
+  - component: {fileID: -3654652712543143710}
   m_Layer: 0
-  m_Name: Ice Wave
+  m_Name: Charge Touch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1797094854662461765
+  m_IsActive: 1
+--- !u!4 &3956593276308578072
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1797094854662461764}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.444, z: 0.875}
-  m_LocalScale: {x: 1, y: 0.2, z: 1}
+  m_GameObject: {fileID: 3956593276308578071}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.45, z: 0.75}
+  m_LocalScale: {x: 2, y: 0.2, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &1797094854662461761
+--- !u!33 &514792776577590249
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1797094854662461764}
+  m_GameObject: {fileID: 3956593276308578071}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &1797094854662461760
+--- !u!23 &-5315346385252609346
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1797094854662461764}
+  m_GameObject: {fileID: 3956593276308578071}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -86,47 +85,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1797094854662461763
+--- !u!65 &4652876108625741884
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1797094854662461764}
+  m_GameObject: {fileID: 3956593276308578071}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1797094854662461762
+--- !u!114 &-3654652712543143710
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1797094854662461764}
+  m_GameObject: {fileID: 3956593276308578071}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0581e87b7cf91dc4286337ffc1785e9b, type: 3}
+  m_Script: {fileID: 11500000, guid: b10635c0be392534da22139702157ad0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackTime: 1
-  ManaPerSecondCost: 5
-  CostIncreasePerSecond: 0
---- !u!111 &1797094854662461774
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1797094854662461764}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 3d4be90c014d71048a0317da7a786a6b, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 3d4be90c014d71048a0317da7a786a6b, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
+  StaminaCost: 0
+  ManaCost: 25
+  attackDuration: 0.33
+  PowerMultiplier: 5
+  onTargetHitEffects:
+  - {fileID: 6935310698061611310, guid: f8fc7c1aaafb3ae40a15af9114699650, type: 3}
+  RequiredChargeTime: 2
+  attackCollider: {fileID: 4652876108625741884}

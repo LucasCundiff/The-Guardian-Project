@@ -20,7 +20,7 @@ public class BaseChannelAttack : BaseAttack
 	{
 		base.InitializeAttack(input, action, user);
 
-		attackInput.performed += StartChannel;
+		attackInput.started += StartChannel;
 		attackInput.canceled += EndChannel;
 	}
 
@@ -28,7 +28,7 @@ public class BaseChannelAttack : BaseAttack
 	{
 		base.DeinitializeAttack();
 
-		attackInput.performed -= StartChannel;
+		attackInput.started -= StartChannel;
 		attackInput.canceled -= EndChannel;
 	}
 

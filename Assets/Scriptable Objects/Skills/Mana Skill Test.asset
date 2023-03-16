@@ -15,7 +15,15 @@ MonoBehaviour:
   MaxLevel: 3
   CurrentLevel: 0
   SkillSprite: {fileID: 0}
-  SkillName: 
+  SkillName: Cryomancy
+  SkillAttackList: 'Primary: Ice Blast
+
+    Secondary: Ice Wave
+
+    Tertiary: Frost
+    Armor
+
+    Quaternary: Blizzard'
   SkillType: 0
   SkillGameObject: {fileID: 6699634811854601243, guid: 7f3de35b41e7e1442951174fb8f3e3f1,
     type: 3}

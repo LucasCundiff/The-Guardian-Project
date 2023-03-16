@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3677562934959735172
+--- !u!1 &9090025706161061977
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,43 +8,41 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3677562934959735173}
-  - component: {fileID: 4782420875442223731}
+  - component: {fileID: 3201938833683711813}
+  - component: {fileID: 4979311566616838998}
   m_Layer: 0
-  m_Name: Chaos Effect
+  m_Name: Push Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3677562934959735173
+--- !u!4 &3201938833683711813
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3677562934959735172}
+  m_GameObject: {fileID: 9090025706161061977}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4782420875442223731
+--- !u!114 &4979311566616838998
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3677562934959735172}
+  m_GameObject: {fileID: 9090025706161061977}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 583e75b659e889f498a6d2034e3de266, type: 3}
+  m_Script: {fileID: 11500000, guid: 9fd1d35cc1202b742822803a34607415, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EffectDuration: 30
-  DamageMultiplier: 0.1
-  CurrentStacks: 0
-  ChaosEffectPrefab: {fileID: 3677562934959735172}
+  forceMultipler: 20
+  Push: 1

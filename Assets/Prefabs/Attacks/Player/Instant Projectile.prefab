@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5332743575026183294}
   m_Layer: 0
-  m_Name: Porjectile Spawn
+  m_Name: Spawn Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,7 +62,7 @@ Transform:
   m_Children:
   - {fileID: 5332743575026183294}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9050670438248415087
 MonoBehaviour:
@@ -82,7 +82,7 @@ MonoBehaviour:
   PowerMultiplier: 1.05
   onTargetHitEffects:
   - {fileID: 6935310698061611310, guid: f8fc7c1aaafb3ae40a15af9114699650, type: 3}
-  - {fileID: 1212816294735447775, guid: b667244663bd53c40bd6e11c31ff5e24, type: 3}
+  - {fileID: 4979311566616838998, guid: d79003c28afc18d488dfca5cff6e4f23, type: 3}
   projectileAmmo: {fileID: 2280249818751201934, guid: 174d3e27a242e4141a0b5263625ff20b,
     type: 3}
-  spawnPoint: {fileID: 3956593276308578072}
+  spawnPoint: {fileID: 5332743575026183294}

@@ -13,14 +13,14 @@ public class ProjectileAmmo : MonoBehaviour
 	[SerializeField] List<int> stopProjectileLayers = new List<int> { 6, 7 };
 
 	protected CharacterStats currentUser;
-	protected BaseAttack currentBaseAttack;
+	protected BaseAttack currentAttack;
 
 	public virtual void InitializeAmmo(CharacterStats user, BaseAttack baseAttack)
 	{
 		if (!rb) rb = GetComponent<Rigidbody>();
 
 		currentUser = user;
-		currentBaseAttack = baseAttack;
+		currentAttack = baseAttack;
 
 		rb.AddRelativeForce(projectileDirection * projectileSpeed, forceType);
 		StartCoroutine(SelfDestruct());
@@ -35,25 +35,16 @@ public class ProjectileAmmo : MonoBehaviour
 
 	protected void OnTriggerEnter(Collider other)
 	{
-		var target = other.GetComponent<IDamageable>();
+		currentAttack.PossibleTargetHit(other);
+		CheckStopLayer(other);
+	}
 
-		if (target != null && (CharacterStats)target != currentUser)
-		{
-			var power = currentBaseAttack.DeterminePower();
-
-			foreach (OnHitAttackEffect hitAttackEffect in currentBaseAttack.OnTargetHitEffects)
-			{
-				hitAttackEffect.InitializeEffect(target, power, currentUser);
-			}
-
-			Destroy(gameObject);
-		}
-
+	private void CheckStopLayer(Collider other)
+	{
 		foreach (int layerValue in stopProjectileLayers)
 		{
 			if (layerValue == other.gameObject.layer)
 				Destroy(gameObject);
 		}
-
 	}
 }

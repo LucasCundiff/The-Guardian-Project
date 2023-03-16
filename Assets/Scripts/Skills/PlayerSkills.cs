@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerSkills : MonoBehaviour
 {
+	[SerializeField] SkillTooltip skillTooltip;
+
 	public Action<int> OnSoulPointsChangedEvent;
 
 	public List<SkillSlot> ManaSkillSlots = new List<SkillSlot>();
@@ -66,11 +68,23 @@ public class PlayerSkills : MonoBehaviour
 	{
 		foreach (SkillSlot skillSlot in skillSlots)
 		{
+			skillSlot.OnPointerEnterEvent += ShowTooltip;
+			skillSlot.OnPointerExitEvent += HideTooltip;
 			skillSlot.OnLeftClickedEvent += TryLevelUpSkill;
 			skillSlot.OnBeginDragEvent += BeginDragSkillSlot;
 			skillSlot.OnDragEvent += DuringDragSkillSlot;
 			skillSlot.OnEndDragEvent += EndDragSkillSlot;
 		}
+	}
+
+	private void ShowTooltip(SkillSlot skillSlot)
+	{
+		skillTooltip.EnableTooltip(skillSlot);
+	}
+
+	private void HideTooltip(SkillSlot skillSlot)
+	{
+		skillTooltip.DisableTooltip(skillSlot);
 	}
 
 	public void TryLevelUpSkill(SkillSlot skillSlot)

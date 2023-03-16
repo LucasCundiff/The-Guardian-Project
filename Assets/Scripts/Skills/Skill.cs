@@ -10,6 +10,8 @@ public class Skill : ScriptableObject
 	public int CurrentLevel = 0;
 	public Sprite SkillSprite;
 	public string SkillName;
+	[TextArea]
+	public string SkillAttackList;
 	public SkillType SkillType;
 	public GameObject SkillGameObject;
 

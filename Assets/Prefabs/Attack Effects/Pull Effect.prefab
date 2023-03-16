@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3956593276308578071
+--- !u!1 &9090025706161061977
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,46 +8,41 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3956593276308578072}
-  - component: {fileID: -202919076045035953}
+  - component: {fileID: 3201938833683711813}
+  - component: {fileID: 4979311566616838998}
   m_Layer: 0
-  m_Name: Instant Summon
+  m_Name: Pull Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3956593276308578072
+--- !u!4 &3201938833683711813
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3956593276308578071}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.45, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.2, z: 1}
+  m_GameObject: {fileID: 9090025706161061977}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-202919076045035953
+--- !u!114 &4979311566616838998
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3956593276308578071}
+  m_GameObject: {fileID: 9090025706161061977}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5657fb14e9c91544a915ce61e388e16e, type: 3}
+  m_Script: {fileID: 11500000, guid: 9fd1d35cc1202b742822803a34607415, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StaminaCost: 0
-  ManaCost: 50
-  attackDuration: 1.15
-  PowerMultiplier: 1
-  onTargetHitEffects: []
-  summon: {fileID: 1634057668600800336, guid: e9bf51de73c84a143a226cafad087733, type: 3}
-  summonRadius: 3
+  forceMultipler: 20
+  Push: 0

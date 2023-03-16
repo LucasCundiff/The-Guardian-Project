@@ -5,10 +5,10 @@ using UnityEngine.InputSystem;
 
 public class BaseAttack : MonoBehaviour
 {
-	[Range(0f, 100f)]
-	[SerializeField] protected float StaminaCost;
-	[Range(0f, 100f)]
-	[SerializeField] protected float ManaCost;
+	[Range(-100f, 100f)]
+	[SerializeField] protected float StaminaCost = 0f;
+	[Range(-100f, 100f)]
+	[SerializeField] protected float ManaCost = 0f;
 	[Range(0f, 5f)]
 	[SerializeField] protected float attackDuration;
 	[Range(.05f, 12.5f)]
@@ -57,4 +57,21 @@ public class BaseAttack : MonoBehaviour
 		CurrentUser.CurrentStamina -= StaminaCost;
 		CurrentUser.CurrentMana -= ManaCost;
 	}
+
+	public virtual void PossibleTargetHit(Collider colliderHit)
+	{
+		var target = colliderHit.GetComponent<IDamageable>();
+
+		if (target != null)
+		{
+			if (target is CharacterStats cTarget && cTarget?.Faction == CurrentUser.Faction) return;
+			var power = DeterminePower();
+
+			foreach (OnHitAttackEffect onHitAttackEffect in OnTargetHitEffects)
+			{
+				onHitAttackEffect.InitializeEffect(target, power, CurrentUser);
+			}
+		}
+	}
 }
+

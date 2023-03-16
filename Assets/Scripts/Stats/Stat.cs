@@ -6,7 +6,16 @@ using UnityEngine;
 public class Stat 
 {
 	public string StatName;
-	public float BaseValue;
+	public float baseValue;
+	public float BaseValue
+	{
+		get { return baseValue; }
+		set
+		{
+			baseValue = value;
+			StatModifiedEvent?.Invoke(this);
+		}
+	}
 	public List<StatModifier> StatModifiers { get; private set; } = new List<StatModifier>();
 
 	public Action<Stat> StatModifiedEvent;

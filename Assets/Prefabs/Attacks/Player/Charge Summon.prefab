@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3956593276308578072}
-  - component: {fileID: -202919076045035953}
+  - component: {fileID: 8471215148263329694}
   m_Layer: 0
-  m_Name: Instant Summon
+  m_Name: Charge Summon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,9 +30,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-202919076045035953
+--- !u!114 &8471215148263329694
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,13 +41,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 3956593276308578071}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5657fb14e9c91544a915ce61e388e16e, type: 3}
+  m_Script: {fileID: 11500000, guid: 03cec331573ef8440b8d0bdd5ce5c616, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   StaminaCost: 0
-  ManaCost: 50
-  attackDuration: 1.15
-  PowerMultiplier: 1
+  ManaCost: 30.9
+  attackDuration: 0
+  PowerMultiplier: 4.15
   onTargetHitEffects: []
+  RequiredChargeTime: 2
   summon: {fileID: 1634057668600800336, guid: e9bf51de73c84a143a226cafad087733, type: 3}
-  summonRadius: 3
+  summonRadius: 5.06
