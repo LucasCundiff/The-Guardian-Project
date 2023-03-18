@@ -16,16 +16,8 @@ MonoBehaviour:
   CurrentLevel: 0
   SkillSprite: {fileID: 0}
   SkillName: Pyromancy
-  SkillAttackList: 'Primary: Fireball
-
-    Secondary: Inferno
-
-    Tertiary: Wall
-    of Fire
-
-    Quaternary: Incinerate'
   SkillType: 1
-  SkillGameObject: {fileID: 4442866747004379584, guid: 4fc1e479f3b1ac344aa906a288bf6225,
+  SkillGameObject: {fileID: 9029128962512952485, guid: 7f3de35b41e7e1442951174fb8f3e3f1,
     type: 3}
   possibleSprites:
   - {fileID: 21300000, guid: 8a96b38c76be79946a150249547b07bc, type: 3}

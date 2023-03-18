@@ -15,6 +15,7 @@ public class BaseChannelAttack : BaseAttack
 
 	protected float manaPerSecondCostCache;
 	protected float staminaPerSecondCostCache;
+	protected float healthPerSecondCostCache;
 
 	public override void InitializeAttack(InputAction input, BaseAction action, CharacterStats user)
 	{
@@ -75,27 +76,36 @@ public class BaseChannelAttack : BaseAttack
 	{
 		CurrentUser.CurrentMana -= manaPerSecondCostCache;
 		CurrentUser.CurrentStamina -= staminaPerSecondCostCache;
+		CurrentUser.CurrentHealth -= healthPerSecondCostCache;
 	}
 
 	public override bool CanPayAttackCost()
 	{
-		if (ManaCost > 0)
+		if (ManaCost != 0)
 		{
 			manaPerSecondCostCache = (ManaCost + (CostIncreasePerSecond * (int)channelTime)) * Time.deltaTime;
 
-			if (CurrentUser && CurrentUser.CurrentMana >= manaPerSecondCostCache)
-				return true;
+			if (CurrentUser.CurrentMana < manaPerSecondCostCache)
+				return false;
 		}
 
-		if (StaminaCost > 0)
+		if (StaminaCost != 0)
 		{
 			staminaPerSecondCostCache = (StaminaCost + (CostIncreasePerSecond * (int)channelTime)) * Time.deltaTime;
 
-			if (CurrentUser && CurrentUser.CurrentStamina >= staminaPerSecondCostCache)
-				return true;
+			if (CurrentUser.CurrentStamina < staminaPerSecondCostCache)
+				return false;
+		}
+		
+		if (HealthCost != 0)
+		{
+			healthPerSecondCostCache = (HealthCost + (CostIncreasePerSecond * (int)channelTime)) * Time.deltaTime;
+
+			if (CurrentUser.CurrentHealth < healthPerSecondCostCache)
+				return false;
 		}
 
-		return false;
+		return true;
 	}
 
 	public override float DeterminePower()

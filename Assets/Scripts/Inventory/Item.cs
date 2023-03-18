@@ -13,7 +13,6 @@ public class Item : ScriptableObject
 	public string ItemDescription { get; protected set;}
 
 	public Sprite ItemSprite;
-	public GameObject weaponGameObject;
 	public int GoldCost;
 
 	protected static readonly StringBuilder sb = new StringBuilder();
@@ -43,5 +42,10 @@ public class Item : ScriptableObject
 	public virtual void GenerateItemDescription()
 	{
 
+	}
+
+	public virtual GameObject GetWorldItem()
+	{
+		return null;
 	}
 }

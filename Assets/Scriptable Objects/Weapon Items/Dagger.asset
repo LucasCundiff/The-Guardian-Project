@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8cb7c849bb52194d983c808039c3fdf, type: 3}
+  m_Name: Dagger
+  m_EditorClassIdentifier: 
+  itemName: Sword
+  ItemSprite: {fileID: 21300000, guid: 5fd50594014b70e48bd6993443d46b32, type: 3}
+  GoldCost: 0
+  WeaponObject: {fileID: 4553788636521669764, guid: c7b8fc26bf3dc374aa4e1111e5065f0e,
+    type: 3}

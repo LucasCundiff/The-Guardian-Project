@@ -142,10 +142,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a14f203086115cb4aaf8a13e9aa0d7b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Primary: {fileID: 0}
-  Secondary: {fileID: 0}
-  Tertiary: {fileID: 0}
-  Quaternary: {fileID: 0}
+  Primary: {fileID: 1261102549601030058, guid: 7198a9dee9d5944498512dc6bbcf739d, type: 3}
+  Secondary: {fileID: -202919076045035953, guid: bc46b5e843de1aa4ab62ad6d8b69c441,
+    type: 3}
+  Tertiary: {fileID: -761566769926921937, guid: aa78aa9c85bd86a4dbcabaa888ae7a9f,
+    type: 3}
+  Quaternary: {fileID: 8471215148263329694, guid: 9367acfc446a4924cba510a287addb31,
+    type: 3}
   Power: 0
   CriticalChance: 20
   CriticalMultiplier: 2

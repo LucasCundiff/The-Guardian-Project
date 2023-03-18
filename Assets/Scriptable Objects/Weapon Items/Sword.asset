@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Sword
   ItemSprite: {fileID: 21300000, guid: 5fd50594014b70e48bd6993443d46b32, type: 3}
-  weaponGameObject: {fileID: 4553788636521669766, guid: 8da08c62873ddd447a3efc01804eedde,
-    type: 3}
   GoldCost: 0
+  WeaponObject: {fileID: 4553788636521669764, guid: 8da08c62873ddd447a3efc01804eedde,
+    type: 3}

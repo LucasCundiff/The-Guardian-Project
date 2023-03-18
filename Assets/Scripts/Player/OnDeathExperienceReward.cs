@@ -16,11 +16,8 @@ public class OnDeathExperienceReward : MonoBehaviour
 
 	public void ExperienceReward()
 	{
-		foreach (CharacterStats character in CharacterTracker.Instance.AllCharacters)
-		{
-			var player = character.GetComponent<PlayerLevel>();
-			if (player)
-				player.AddExperience(ExperienceAmount);
-		}	
+		var playerLevel = CharacterTracker.Instance.Player.GetComponent<PlayerLevel>();
+		if (playerLevel)
+			playerLevel.AddExperience(ExperienceAmount);
 	}
 }

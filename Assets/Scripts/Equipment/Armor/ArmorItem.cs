@@ -8,22 +8,20 @@ public class ArmorItem : EquipmentItem
 	public List<ArmorModifier> ActualModifiers = new List<ArmorModifier>();
 	public ArmorType ArmorType;
 
-	private ArmorItem _armorItem;
-
 	public override Item GetCopy()
 	{
-		_armorItem = (ArmorItem)base.GetCopy();
+		var armorItem = (ArmorItem)base.GetCopy();
 
-		_armorItem.ActualModifiers.Clear();
+		armorItem.ActualModifiers.Clear();
 		for (int i = 0; i < PossibleModifiers.Count; i++)
 		{
-			if (_armorItem.PossibleModifiers[i].CanAddModifier())
-				_armorItem.ActualModifiers.Add(_armorItem.PossibleModifiers[i]);
+			if (armorItem.PossibleModifiers[i].CanAddModifier())
+				armorItem.ActualModifiers.Add(armorItem.PossibleModifiers[i]);
 		}
 
-		_armorItem.GenerateItemDescription();
+		armorItem.GenerateItemDescription();
 
-		return _armorItem;
+		return armorItem;
 	}
 
 	public override void Equip(CharacterStats user)

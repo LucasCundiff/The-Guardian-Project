@@ -5,10 +5,12 @@ using UnityEngine.InputSystem;
 
 public class BaseAttack : MonoBehaviour
 {
-	[Range(-100f, 100f)]
+	[Range(-50f, 100f)]
 	[SerializeField] protected float StaminaCost = 0f;
-	[Range(-100f, 100f)]
+	[Range(-50f, 100f)]
 	[SerializeField] protected float ManaCost = 0f;
+	[Range(-50f, 100f)]
+	[SerializeField] protected float HealthCost = 0f;
 	[Range(0f, 5f)]
 	[SerializeField] protected float attackDuration;
 	[Range(.05f, 12.5f)]
@@ -48,6 +50,8 @@ public class BaseAttack : MonoBehaviour
 			return false;
 		if (CurrentUser.CurrentMana < ManaCost)
 			return false;
+		if (CurrentUser.CurrentHealth < HealthCost)
+			return false;
 
 		return true;
 	}
@@ -56,6 +60,7 @@ public class BaseAttack : MonoBehaviour
 	{
 		CurrentUser.CurrentStamina -= StaminaCost;
 		CurrentUser.CurrentMana -= ManaCost;
+		CurrentUser.CurrentHealth -= HealthCost;
 	}
 
 	public virtual void PossibleTargetHit(Collider colliderHit)

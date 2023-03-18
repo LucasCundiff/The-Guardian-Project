@@ -125,6 +125,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Hold,Press"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""67007b01-759c-4344-91ef-7890a18241ce"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -345,6 +354,17 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Action State Toggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""530c7229-a564-41cb-9399-11a1dde17384"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -963,6 +983,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_Player_Action3 = m_Player.FindAction("Action 3", throwIfNotFound: true);
         m_Player_Action4 = m_Player.FindAction("Action 4", throwIfNotFound: true);
         m_Player_ActionStateToggle = m_Player.FindAction("Action State Toggle", throwIfNotFound: true);
+        m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1046,6 +1067,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Action3;
     private readonly InputAction m_Player_Action4;
     private readonly InputAction m_Player_ActionStateToggle;
+    private readonly InputAction m_Player_Interact;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
@@ -1061,6 +1083,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @Action3 => m_Wrapper.m_Player_Action3;
         public InputAction @Action4 => m_Wrapper.m_Player_Action4;
         public InputAction @ActionStateToggle => m_Wrapper.m_Player_ActionStateToggle;
+        public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1103,6 +1126,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @ActionStateToggle.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnActionStateToggle;
                 @ActionStateToggle.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnActionStateToggle;
                 @ActionStateToggle.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnActionStateToggle;
+                @Interact.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1140,6 +1166,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @ActionStateToggle.started += instance.OnActionStateToggle;
                 @ActionStateToggle.performed += instance.OnActionStateToggle;
                 @ActionStateToggle.canceled += instance.OnActionStateToggle;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
             }
         }
     }
@@ -1315,6 +1344,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnAction3(InputAction.CallbackContext context);
         void OnAction4(InputAction.CallbackContext context);
         void OnActionStateToggle(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

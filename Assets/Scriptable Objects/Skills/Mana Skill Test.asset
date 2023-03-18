@@ -16,16 +16,8 @@ MonoBehaviour:
   CurrentLevel: 0
   SkillSprite: {fileID: 0}
   SkillName: Cryomancy
-  SkillAttackList: 'Primary: Ice Blast
-
-    Secondary: Ice Wave
-
-    Tertiary: Frost
-    Armor
-
-    Quaternary: Blizzard'
   SkillType: 0
-  SkillGameObject: {fileID: 6699634811854601243, guid: 7f3de35b41e7e1442951174fb8f3e3f1,
+  SkillGameObject: {fileID: 2025548267424498046, guid: 4fc1e479f3b1ac344aa906a288bf6225,
     type: 3}
   possibleSprites:
   - {fileID: 21300000, guid: 4029a9cfeb86f134c9c5af05993eaac8, type: 3}

@@ -6,8 +6,6 @@ public class ItemTooltip : MonoBehaviour
 {
 	[SerializeField] TextMeshProUGUI nameText, modifierText;
 
-	private Item _itemToDisplay;
-
 	public void Start()
 	{
 		gameObject.SetActive(false);
@@ -21,12 +19,12 @@ public class ItemTooltip : MonoBehaviour
 
 	public void EnableTooltip(ItemSlot itemSlot)
 	{
-		_itemToDisplay = itemSlot.Item;
+		var itemToDisplay = itemSlot.Item;
 
-		if (_itemToDisplay)
+		if (itemToDisplay)
 		{
-			nameText.text = _itemToDisplay.ItemName;
-			modifierText.text = _itemToDisplay.ItemDescription;
+			nameText.text = itemToDisplay.ItemName;
+			modifierText.text = itemToDisplay.ItemDescription;
 
 			gameObject.SetActive(true);
 		}		

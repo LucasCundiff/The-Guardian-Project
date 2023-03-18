@@ -17,6 +17,12 @@ public class PlayerUIToggle : MonoBehaviour
 		playerInputManager.PlayerInput.UI.CharacterPanelToggle.performed += ToggleEventHelper;
 
 		ToggleCharacterPanel(StartOpen);
+
+		if (!StartOpen)
+		{
+			Cursor.lockState = CursorLockMode.Locked;
+			Cursor.visible = false;
+		}
 	}
 
 	public void ToggleCharacterPanel(bool state)
@@ -31,6 +37,12 @@ public class PlayerUIToggle : MonoBehaviour
 
 			Time.timeScale = state ? 0f : 1f;
 		}
+	}
+
+	private void OnDisable()
+	{
+		Cursor.lockState = CursorLockMode.None;
+		Cursor.visible = true;
 	}
 
 	public void ToggleEventHelper(InputAction.CallbackContext context)

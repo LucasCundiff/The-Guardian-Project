@@ -28,7 +28,7 @@ public class SkillTooltip : MonoBehaviour
 		if (skillToDisplay)
 		{
 			nameText.text = skillToDisplay.SkillName;
-			attackListText.text = skillToDisplay.SkillAttackList;
+			attackListText.text = skillToDisplay.GetSkillDestription();
 
 			gameObject.SetActive(true);
 		}

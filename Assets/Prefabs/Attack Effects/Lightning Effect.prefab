@@ -111,5 +111,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ae38cac475cac840b4d9ba21863afc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DamageMultiplier: 0.5
-  LightningEffectPrefab: {fileID: 4631282859271143278}
+  PowerMultiplier: 0.5
+  EffectRange: 10

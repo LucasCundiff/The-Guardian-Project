@@ -93,11 +93,11 @@ public class PlayerActionController : MonoBehaviour
 				break;
 			case ActionState.Weapon:
 				if (currentActionSlot.CurrentWeapon)
-					objectToInstansiate = currentActionSlot.CurrentWeapon.weaponGameObject;
+					objectToInstansiate = currentActionSlot.CurrentWeapon.GetWorldItem();
 				break;
 			case ActionState.Skill:
 				if (currentActionSlot.CurrentSkill)
-					objectToInstansiate = currentActionSlot.CurrentSkill.SkillGameObject;
+					objectToInstansiate = currentActionSlot.CurrentSkill.SkillGameObject.gameObject;
 				break;
 			default:
 				break;

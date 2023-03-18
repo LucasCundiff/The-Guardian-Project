@@ -6,6 +6,7 @@ public class CharacterTracker : MonoBehaviour
 {
 	static public CharacterTracker Instance;
 	public List<CharacterStats> AllCharacters { get; private set; }
+	public CharacterStats Player;
 
 	private void Awake()
 	{
