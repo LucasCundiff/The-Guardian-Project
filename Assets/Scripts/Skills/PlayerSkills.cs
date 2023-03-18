@@ -59,6 +59,7 @@ public class PlayerSkills : MonoBehaviour
 				if (skillSlot.Skill == null)
 				{
 					skillSlot.Skill = skill.GetCopy();
+					break;
 				}
 			}
 		}

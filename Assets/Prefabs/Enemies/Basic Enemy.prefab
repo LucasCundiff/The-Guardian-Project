@@ -188,7 +188,7 @@ MonoBehaviour:
   Faction: {fileID: 11400000, guid: 496e9fdd2e2c67d4cb5140a5fdaaf1e8, type: 2}
   Stats:
   - StatName: Health
-    baseValue: 100
+    baseValue: 150
   - StatName: Mana
     baseValue: 200
   - StatName: Stamina
@@ -202,7 +202,7 @@ MonoBehaviour:
   - StatName: Stamina Proficiency
     baseValue: 5
   - StatName: Armor
-    baseValue: 0
+    baseValue: 20
   - StatName: Resistance
     baseValue: 0
   - StatName: Regeneration

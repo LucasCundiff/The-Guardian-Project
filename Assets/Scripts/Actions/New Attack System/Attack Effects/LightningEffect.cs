@@ -14,20 +14,27 @@ public class LightningEffect : OnHitAttackEffect
 
 		if (cTarget)
 		{
+			Debug.Log($"{cTarget} target was found");
 			foreach (CharacterStats character in CharacterTracker.Instance.AllCharacters)
 			{
-				if (DetermineDistance(character) && character.Faction != source.Faction)
+				if (DetermineDistance(character, cTarget) && character.Faction != source.Faction)
 				{
 					character.TakeDamage(power * PowerMultiplier);
+					Debug.Log($"{character} taking {power * PowerMultiplier} lightning damage");
+
 				}
 			}
+
+			return;
 		}
+
+		Debug.Log($"No targets found for lightning damage");
 	}
 
-	private bool DetermineDistance(CharacterStats character)
+	private bool DetermineDistance(CharacterStats character, CharacterStats cTarget)
 	{
-		var distance = character.transform.position - transform.position;
-
+		var distance = cTarget.transform.position - character.transform.position;
+		Debug.Log($"{character} is {distance} away from {cTarget}");
 		return distance.magnitude < EffectRange;
 	}
 }

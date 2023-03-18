@@ -5,14 +5,14 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Skill/Test Skill")]
 public class TestSkill : Skill
 {
-	public List<Sprite> possibleSprites = new List<Sprite>();
+	//public List<Sprite> possibleSprites = new List<Sprite>();
 
 	protected Skill _skillCache;
 
 	public override Skill GetCopy()
 	{
 		_skillCache = Instantiate(this);
-		_skillCache.SkillSprite = possibleSprites[Random.Range(0, possibleSprites.Count)];
+		//_skillCache.SkillSprite = possibleSprites[Random.Range(0, possibleSprites.Count)];
 		return _skillCache;
 	}
 }

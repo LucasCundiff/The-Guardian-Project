@@ -27,6 +27,7 @@ public class PlayerInteraction : MonoBehaviour
 		{
 			Debug.Log($"Interacting with {currentInteraction}!");
 			currentInteraction.Interact();
+			currentInteraction = null;
 		}
 	}
 

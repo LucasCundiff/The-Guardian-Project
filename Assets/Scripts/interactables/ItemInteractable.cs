@@ -5,7 +5,6 @@ using UnityEngine;
 public class ItemInteractable : MonoBehaviour, IInteractable
 {
 	public Item Item;
-	public ItemTooltip ItemTooltip;
 
 	void Start()
 	{
