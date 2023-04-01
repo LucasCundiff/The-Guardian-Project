@@ -16,6 +16,8 @@ public class StatPanelUI : MonoBehaviour
 	{
 		for (int i = 0; i < statUIs.Count; i++)
 		{
+			if (userStats.Stats.Count < i) return;
+
 			if (userStats.Stats[i] != null)
 			{
 				statUIs[i].SetStat(userStats.Stats[i]);

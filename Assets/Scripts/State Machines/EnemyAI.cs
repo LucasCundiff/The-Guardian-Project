@@ -8,6 +8,7 @@ using System.Collections;
 public class EnemyAI : AIStateMachine
 {
 	[SerializeField] protected MeshRenderer meshRenderer;
+	[SerializeField] protected Rigidbody rb;
 	[SerializeField] protected Material aliveMaterial, deadMaterial;
 	[SerializeField] protected float maxIdleTime;
 	[SerializeField] protected float wanderRadius;
@@ -29,6 +30,9 @@ public class EnemyAI : AIStateMachine
 
 		if (!meshRenderer)
 			meshRenderer = GetComponent<MeshRenderer>();
+
+		if (!rb)
+			rb = GetComponent<Rigidbody>();
 
 		foreach (EnemyAttackTableData tableData in attackTable)
 		{
@@ -59,6 +63,7 @@ public class EnemyAI : AIStateMachine
 				break;
 			case AIState.Dead:
 				meshRenderer.material = deadMaterial;
+				rb.detectCollisions = false;
 				break;
 			case AIState.None:
 				break;
@@ -85,6 +90,7 @@ public class EnemyAI : AIStateMachine
 				break;
 			case AIState.Dead:
 				meshRenderer.material = aliveMaterial;
+				rb.detectCollisions = true;
 				break;
 			case AIState.None:
 				break;

@@ -113,9 +113,10 @@ MonoBehaviour:
   StaminaCost: -2
   ManaCost: 0
   HealthCost: 0
-  attackDuration: 1
-  PowerMultiplier: 1.2
+  attackSpeed: 1
+  attackCooldown: 0
+  Power: 0
   onTargetHitEffects:
-  - {fileID: 6935310698061611310, guid: f8fc7c1aaafb3ae40a15af9114699650, type: 3}
+  - {fileID: 11400000, guid: 17cd671ddbc5fd24e847a935b56939d7, type: 2}
   RequiredChargeTime: 1
   attackCollider: {fileID: 4652876108625741884}

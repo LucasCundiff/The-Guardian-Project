@@ -8,21 +8,26 @@ public class CharacterStats : MonoBehaviour, IDamageable
 	public Faction Faction;
 
 	/// <summary>
-	/// 0. = Health, 1 = Mana,  2 = Stamina, 3 = Melee Proficiency, 4 = Ranged Proficiency, 5 = Mana Proficiency, 6 = Stamina Proficiency, 7 = Armor, 8 = Resistance, 9 = Regeneration, 10 = Movement Speed
+	/// 0. = Health, 1 = Mana,  2 = Stamina, 3 = Melee Proficiency, 4 = Ranged Proficiency, 5 = Mana Proficiency, 6 = Stamina Proficiency, 7 = Attack Speed, 8 = Cooldown Reduction, 9 = Armor, 10 = Resistance,
+	/// 11 = Regeneration, 12 = Movement Speed, 13 = Damage Multipler, 14 = Damage Received
 	/// </summary>
 	public List<Stat> Stats = new List<Stat>
 	{
-		new Stat(100f, "Health"),
-		new Stat(200f, "Mana"),
-		new Stat(200f, "Stamina"),
-		new Stat(5f, "Melee Proficiency"),
-		new Stat(5f, "Ranged Proficiency"),
-		new Stat(5f, "Mana Proficiency"),
-		new Stat(5f, "Stamina Proficiency"),
-		new Stat(0f, "Armor"),
-		new Stat(0f, "Resistance"),
-		new Stat(0.5f, "Regeneration"),
-		new Stat(5f, "Movement Speed"),
+		new Stat(100f, Mathf.Infinity,"Health", "The total amount of damage you can take before dying"),
+		new Stat(200f, Mathf.Infinity,"Mana", "Used to pay mana cost of certain attacks"),
+		new Stat(200f, Mathf.Infinity,"Stamina", "Used to pay stamina cost of certain attacks"),
+		new Stat(1f, 50f,"Melee Proficiency", "A direct multipler to the power of melee attacks"),
+		new Stat(1f, 50f,"Ranged Proficiency", "A direct multipler to the power of ranged attacks"),
+		new Stat(1f, 50f,"Mana Proficiency", "Divides the cost of mana skills by this amount"),
+		new Stat(1f, 50f,"Stamina Proficiency", "Divides the cost of stamina skills by this amount"),
+		new Stat(1f, 5f,"Attack Speed", "Divides the time it takes for an attack by this amount"),
+		new Stat(1f, 5f,"Cooldown Reduction", "A direct multipler to your cooldown times"),
+		new Stat(0f, 500f,"Armor", "Decreases incoming damage by 0.002% for each point"),
+		new Stat(0f, 500f,"Resistance", "Decreases the power of hostile attack effects by 0.002% for each point"),
+		new Stat(0.5f, 50f,"Regeneration", "Regenerates Health by this amount per second, 3x as much for Mana and Stamina"),
+		new Stat(5f, 50f,"Movement Speed", "The speed at which you move through the world"),
+		new Stat(1f, 100f,"Damage Multipler", "A direct multipler to your outgoing damage"),
+		new Stat(1f, 100f,"Damage Received", "A direct multipler to incoming damage"),
 	};
 
 	public Action<float, float> HealthChangedEvent;
@@ -92,10 +97,8 @@ public class CharacterStats : MonoBehaviour, IDamageable
 	}
 
 	public bool IsDead = false;
-
 	protected bool isRegenerating;
-
-	protected float _floatCache;
+	protected float resourceRegenerationMuliplier = 3;
 
 	protected void OnEnable() => CharacterTracker.Instance?.RegisterCharacterToTracker(this);
 	protected void OnDisable() => CharacterTracker.Instance?.UnregisterCharacterToTracker(this);
@@ -125,16 +128,16 @@ public class CharacterStats : MonoBehaviour, IDamageable
 		{
 			if (IsDead) break;
 
-			_floatCache = Mathf.Clamp(Stats[9].CurrentValue, 0, Stats[9].CurrentValue);
+			var regenerationAmount = Mathf.Clamp(Stats[11].CurrentValue, 0, Stats[11].CurrentValue);
 
 			if (CurrentHealth < MaxHealth)
-				CurrentHealth += _floatCache;
+				CurrentHealth += regenerationAmount;
 
 			if (CurrentMana < MaxMana)
-				CurrentMana += _floatCache * 2;
+				CurrentMana += regenerationAmount * 2;
 
 			if (CurrentStamina < MaxStamina)
-				CurrentStamina += _floatCache * 2;
+				CurrentStamina += regenerationAmount * 2;
 
 			yield return new WaitForSeconds(1f);
 		}
@@ -145,30 +148,30 @@ public class CharacterStats : MonoBehaviour, IDamageable
 
 	public void HealthStatChanged(Stat healthStat)
 	{
-		_floatCache = healthStat.CurrentValue - MaxHealth;
+		var healthChangeAmount = healthStat.CurrentValue - MaxHealth;
 		MaxHealth = healthStat.CurrentValue;
-		CurrentHealth += _floatCache;
+		CurrentHealth += healthChangeAmount;
 	}
 
 	public void ManaStatChanged(Stat manaStat)
 	{
-		_floatCache = manaStat.CurrentValue - MaxMana;
+		var manaChangeAmount = manaStat.CurrentValue - MaxMana;
 		MaxMana = manaStat.CurrentValue;
-		CurrentMana += _floatCache;
+		CurrentMana += manaChangeAmount;
 	}
 
 	public void StaminaStatChanged(Stat staminaStat)
 	{
-		_floatCache = staminaStat.CurrentValue - MaxStamina;
+		var staminaChangeAmount = staminaStat.CurrentValue - MaxStamina;
 		MaxStamina = staminaStat.CurrentValue;
-		CurrentStamina += _floatCache;
+		CurrentStamina += staminaChangeAmount;
 	}
 
 	public bool TakeDamage(float damage)
 	{
 		if (damage > 0)
 		{
-			float damageToTake = damage;
+			var damageToTake = damage;
 
 			if (HealthShield > 0)
 			{
@@ -176,8 +179,7 @@ public class CharacterStats : MonoBehaviour, IDamageable
 				HealthShield -= damage;
 			}
 
-			damageToTake = Mathf.Clamp(damageToTake - damageToTake * Stats[7].CurrentValue * 0.002f, 1f, Mathf.Infinity);
-			CurrentHealth -= damage;
+			CurrentHealth -= damageToTake;
 
 			if (CurrentHealth <= 0)
 				Die();
@@ -188,6 +190,7 @@ public class CharacterStats : MonoBehaviour, IDamageable
 		return false;
 	}
 
+	[Obsolete]
 	public bool Heal(float healAmount)
 	{
 		if (healAmount > 0)

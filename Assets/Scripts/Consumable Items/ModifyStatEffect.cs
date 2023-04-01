@@ -7,76 +7,22 @@ using UnityEngine;
 public class ModifyStatEffect : ConsumableItemEffect
 {
 	[Range(10, 120)]
-	[SerializeField] float EffectDuration; 
+	[SerializeField] float EffectDuration;
 	[Space]
-	[SerializeField] float HealthModifyAmount;
-	[SerializeField] float ManaModifyAmount;
-	[SerializeField] float StaminaModifyAmount;
-	[SerializeField] float MeleeProficiencyModifyAmount;
-	[SerializeField] float RangedProficiencyModifyAmount;
-	[SerializeField] float ManaProficiencyModifyAmount;
-	[SerializeField] float StaminaProficiencyModifyAmount;
-	[SerializeField] float ArmorModifyAmount;
-	[SerializeField] float ResistanceModifyAmount;
-	[SerializeField] float RegenerationModifyAmount;
-	[SerializeField] float MovementSpeedModifyAmount;
+	[Tooltip("0. = Health, 1 = Mana, 2 = Stamina, 3 = Melee Proficiency, 4 = Ranged Proficiency, 5 = Mana Proficiency, 6 = Stamina Proficiency, 7 = Attack Speed, 8 = Cooldown Reduction, 9 = Armor, 10 = Resistance, 11 = Regeneration, 12 = Movement Speed")]
+	[SerializeField] int[] StatsModifyAmount = new int[13];
 
 	public override void UseEffect(CharacterStats user)
 	{
-		if (HealthModifyAmount != 0)
+		if (!user) return;
+
+		for (int i = 0; i < user.Stats.Count; i++)
 		{
-			user.Stats[0].AddModifier(new StatModifier(HealthModifyAmount, StatModType.Flat, this));
-			user.StartCoroutine(RemoveModifier(user.Stats[0]));
-		}
-		if (ManaModifyAmount != 0)
-		{
-			user.Stats[1].AddModifier(new StatModifier(ManaModifyAmount, StatModType.Flat, this));
-			user.StartCoroutine(RemoveModifier(user.Stats[1]));
-		}
-		if (StaminaModifyAmount != 0)
-		{
-			user.Stats[2].AddModifier(new StatModifier(StaminaModifyAmount, StatModType.Flat, this));
-			user.StartCoroutine(RemoveModifier(user.Stats[2]));
-		}
-		if (MeleeProficiencyModifyAmount != 0)
-		{
-			user.Stats[3].AddModifier(new StatModifier(MeleeProficiencyModifyAmount, StatModType.Flat, this));
-			user.StartCoroutine(RemoveModifier(user.Stats[3]));
-}
-		if (RangedProficiencyModifyAmount != 0)
-		{
-			user.Stats[4].AddModifier(new StatModifier(RangedProficiencyModifyAmount, StatModType.Flat, this));
-			user.StartCoroutine(RemoveModifier(user.Stats[4]));
-}
-		if (ManaProficiencyModifyAmount != 0)
-		{
-			user.Stats[5].AddModifier(new StatModifier(ManaProficiencyModifyAmount, StatModType.Flat, this));
-			user.StartCoroutine(RemoveModifier(user.Stats[5]));
-}
-		if (StaminaProficiencyModifyAmount != 0)
-		{
-			user.Stats[6].AddModifier(new StatModifier(StaminaProficiencyModifyAmount, StatModType.Flat, this));
-			user.StartCoroutine(RemoveModifier(user.Stats[6]));
-}
-		if (ArmorModifyAmount != 0)
-		{
-			user.Stats[7].AddModifier(new StatModifier(ArmorModifyAmount, StatModType.Flat, this));
-			user.StartCoroutine(RemoveModifier(user.Stats[7]));
-}
-		if (ResistanceModifyAmount != 0)
-		{
-			user.Stats[8].AddModifier(new StatModifier(ResistanceModifyAmount, StatModType.Flat, this));
-			user.StartCoroutine(RemoveModifier(user.Stats[8]));
-}
-		if (RegenerationModifyAmount != 0)
-		{
-			user.Stats[9].AddModifier(new StatModifier(RegenerationModifyAmount, StatModType.Flat, this));
-			user.StartCoroutine(RemoveModifier(user.Stats[9]));
-}
-		if (MovementSpeedModifyAmount != 0)
-		{
-			user.Stats[10].AddModifier(new StatModifier(MovementSpeedModifyAmount, StatModType.Flat, this));
-			user.StartCoroutine(RemoveModifier(user.Stats[10]));
+			if (StatsModifyAmount[i] != 0)
+			{
+				user.Stats[i].AddModifier(new StatModifier(StatsModifyAmount[i], StatModType.Flat, this));
+				user.StartCoroutine(RemoveModifier(user.Stats[i]));
+			}
 		}
 	}
 

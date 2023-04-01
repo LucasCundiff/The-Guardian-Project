@@ -20,7 +20,7 @@ public enum ArmorType
 	None,
 }
 
-public enum StatBarUIType
+public enum ResourceType
 {
 	Health,
 	Stamina,

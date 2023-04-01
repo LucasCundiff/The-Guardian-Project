@@ -11,7 +11,6 @@ public class Skill : ScriptableObject
 	public int CurrentLevel = 0;
 	public Sprite SkillSprite;
 	public string SkillName;
-	public SkillType SkillType;
 	public BaseAction SkillGameObject;
 
 	public Action<int> OnSkillLevelUpEvent;

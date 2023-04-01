@@ -62,7 +62,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statType: 0
   statBarFill: {fileID: 4985621588892954238}
-  user: {fileID: 1739527172075071454}
+  user: {fileID: 585624910228905038}
   playerLevel: {fileID: 0}
 --- !u!1 &1739527172075071445
 GameObject:
@@ -76,9 +76,9 @@ GameObject:
   - component: {fileID: 1739527172075071441}
   - component: {fileID: 1739527172075071440}
   - component: {fileID: 1739527172075071455}
-  - component: {fileID: 1739527172075071454}
   - component: {fileID: 1739527172075071452}
   - component: {fileID: 1739527172075071450}
+  - component: {fileID: 585624910228905038}
   - component: {fileID: 1739527172075071453}
   - component: {fileID: 5602065145999699524}
   m_Layer: 6
@@ -173,43 +173,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &1739527172075071454
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1739527172075071445}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8014d3e7253917a468fcb66b2c8bbd5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Faction: {fileID: 11400000, guid: 496e9fdd2e2c67d4cb5140a5fdaaf1e8, type: 2}
-  Stats:
-  - StatName: Health
-    baseValue: 150
-  - StatName: Mana
-    baseValue: 200
-  - StatName: Stamina
-    baseValue: 200
-  - StatName: Melee Proficiency
-    baseValue: 5
-  - StatName: Ranged Proficiency
-    baseValue: 5
-  - StatName: Mana Proficiency
-    baseValue: 5
-  - StatName: Stamina Proficiency
-    baseValue: 5
-  - StatName: Armor
-    baseValue: 20
-  - StatName: Resistance
-    baseValue: 0
-  - StatName: Regeneration
-    baseValue: 0.5
-  - StatName: Movement Speed
-    baseValue: 5
-  IsDead: 0
 --- !u!114 &1739527172075071452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,9 +186,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
-  user: {fileID: 1739527172075071454}
+  user: {fileID: 585624910228905038}
   navAgent: {fileID: 1739527172075071453}
   meshRenderer: {fileID: 1739527172075071440}
+  rb: {fileID: 1739527172075071455}
   aliveMaterial: {fileID: 2100000, guid: e570302391d38794dadc446a2ac2dc32, type: 2}
   deadMaterial: {fileID: 2100000, guid: 5a0a2ae9ec5e8b948ad56e416a612a5a, type: 2}
   maxIdleTime: 8
@@ -250,6 +214,83 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ExperienceAmount: 50
+--- !u!114 &585624910228905038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739527172075071445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8014d3e7253917a468fcb66b2c8bbd5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Faction: {fileID: 11400000, guid: 496e9fdd2e2c67d4cb5140a5fdaaf1e8, type: 2}
+  Stats:
+  - StatName: Health
+    StatValueCap: Infinity
+    StatDescription: The total amount of damage you can take before dying
+    baseValue: 150
+  - StatName: Mana
+    StatValueCap: Infinity
+    StatDescription: Used to pay mana cost of certain attacks
+    baseValue: 200
+  - StatName: Stamina
+    StatValueCap: Infinity
+    StatDescription: Used to pay stamina cost of certain attacks
+    baseValue: 200
+  - StatName: Melee Proficiency
+    StatValueCap: 50
+    StatDescription: A direct multipler to the power of melee attacks
+    baseValue: 1
+  - StatName: Ranged Proficiency
+    StatValueCap: 50
+    StatDescription: A direct multipler to the power of ranged attacks
+    baseValue: 1
+  - StatName: Mana Proficiency
+    StatValueCap: 50
+    StatDescription: Divides the cost of mana skills by this amount
+    baseValue: 1
+  - StatName: Stamina Proficiency
+    StatValueCap: 50
+    StatDescription: Divides the cost of stamina skills by this amount
+    baseValue: 1
+  - StatName: Attack Speed
+    StatValueCap: 5
+    StatDescription: Divides the time it takes for an attack by this amount
+    baseValue: 1
+  - StatName: Cooldown Reduction
+    StatValueCap: 100
+    StatDescription: A direct multipler to your cooldown times
+    baseValue: 1
+  - StatName: Armor
+    StatValueCap: 500
+    StatDescription: Decreases incoming damage by 0.002% for each point
+    baseValue: 20
+  - StatName: Resistance
+    StatValueCap: 500
+    StatDescription: Decreases the power of hostile attack effects by 0.002% for
+      each point
+    baseValue: 0
+  - StatName: Regeneration
+    StatValueCap: 50
+    StatDescription: Regenerates Health by this amount per second, 3x as much for
+      Mana and Stamina
+    baseValue: 0.5
+  - StatName: Movement Speed
+    StatValueCap: 50
+    StatDescription: The speed at which you move through the world
+    baseValue: 5
+  - StatName: Damage Multipler
+    StatValueCap: 100
+    StatDescription: A direct multipler to your outgoing damage
+    baseValue: 1
+  - StatName: Damage Received
+    StatValueCap: 100
+    StatDescription: A direct multipler to incoming damage
+    baseValue: 1
+  IsDead: 0
 --- !u!195 &1739527172075071453
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -644,16 +685,6 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 1739527172075071442}
     m_Modifications:
-    - target: {fileID: 1989465638067691276, guid: fe1934ee86a6c8a47b6001bdc923f36c,
-        type: 3}
-      propertyPath: user
-      value: 
-      objectReference: {fileID: 1739527172075071454}
-    - target: {fileID: 3473767426160781599, guid: fe1934ee86a6c8a47b6001bdc923f36c,
-        type: 3}
-      propertyPath: user
-      value: 
-      objectReference: {fileID: 1739527172075071454}
     - target: {fileID: 3847620830179306800, guid: fe1934ee86a6c8a47b6001bdc923f36c,
         type: 3}
       propertyPath: m_RootOrder
@@ -748,11 +779,6 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 1739527172075071442}
     m_Modifications:
-    - target: {fileID: 1218724683981010850, guid: b8e1d1dcee8d7904f9e32598a22e2e75,
-        type: 3}
-      propertyPath: user
-      value: 
-      objectReference: {fileID: 1739527172075071454}
     - target: {fileID: 7054529697779129254, guid: b8e1d1dcee8d7904f9e32598a22e2e75,
         type: 3}
       propertyPath: m_Name

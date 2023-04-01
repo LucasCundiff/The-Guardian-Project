@@ -19,7 +19,7 @@ public class HealthRestoreObject : MonoBehaviour
 
 		if (target?.Faction == factionToHeal)
 		{
-			target.Heal(healAmount);
+			target.CurrentHealth += healAmount;
 			StartCoroutine(HealthRestoreCooldown());
 		}
 	}

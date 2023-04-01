@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class SkillTooltip : MonoBehaviour
 {
-	[SerializeField] TextMeshProUGUI nameText, attackListText;
+	[SerializeField] TextMeshProUGUI nameText, levelText, attackListText;
 
 	private Item skillToDisplay;
 
@@ -28,6 +28,7 @@ public class SkillTooltip : MonoBehaviour
 		if (skillToDisplay)
 		{
 			nameText.text = skillToDisplay.SkillName;
+			levelText.text = skillToDisplay.CurrentLevel > 0 ? $"({skillToDisplay.CurrentLevel}/{skillToDisplay.MaxLevel})" : "Locked";
 			attackListText.text = skillToDisplay.GetSkillDestription();
 
 			gameObject.SetActive(true);
@@ -38,4 +39,6 @@ public class SkillTooltip : MonoBehaviour
 	{
 		gameObject.SetActive(false);
 	}
+
+	private void OnDisable() => DisableTooltip(null);
 }

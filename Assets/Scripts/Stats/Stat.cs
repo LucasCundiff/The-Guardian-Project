@@ -6,7 +6,10 @@ using UnityEngine;
 public class Stat 
 {
 	public string StatName;
-	public float baseValue;
+	public float StatValueCap;
+	public string StatDescription = "";
+
+	[SerializeField] protected float baseValue;
 	public float BaseValue
 	{
 		get { return baseValue; }
@@ -38,20 +41,18 @@ public class Stat
 	private bool hasChanged = true;
 	private float lastBaseValue = 0;
 
-	private bool _foundSource;
-	private float _finalValue;
-	private float _sumOfPercentAddModifiers;
-
-	public Stat(float baseValue, string statName)
+	public Stat(float baseValue, float valueCap, string statName, string statDescription)
 	{
 		StatName = statName;
+		StatValueCap = valueCap;
 		BaseValue = baseValue;
-}
+		StatDescription = statDescription;
+	}
 
 	private float CalculateFinalValue()
 	{
-		_finalValue = BaseValue;
-		_sumOfPercentAddModifiers = 0;
+		var finalValue = BaseValue;
+		var sumOfPercentAddModifiers = 0f;
 
 		for (int i = 0; i < StatModifiers.Count; i++)
 		{
@@ -59,25 +60,25 @@ public class Stat
 
 			if (mod.Type == StatModType.Flat)
 			{
-				_finalValue += mod.Value;
+				finalValue += mod.Value;
 			}
 			else if (mod.Type == StatModType.PercentAdd)
 			{
-				_sumOfPercentAddModifiers += mod.Value;
+				sumOfPercentAddModifiers += mod.Value;
 
 				if (i + 1 >= StatModifiers.Count || StatModifiers[i + 1].Type != StatModType.PercentAdd)
 				{
-					_finalValue *= 1 + _sumOfPercentAddModifiers * 0.01f;
-					_sumOfPercentAddModifiers = 0;
+					finalValue *= 1 + sumOfPercentAddModifiers * 0.01f;
+					sumOfPercentAddModifiers = 0;
 				}
 			}
 			else if (mod.Type == StatModType.PercentMult)
 			{
-				_finalValue *= 1 + mod.Value * 0.01f;
+				finalValue *= 1 + mod.Value * 0.01f;
 			}
 		}
 
-		return Mathf.Round(_finalValue * 100f) / 100f;
+		return Mathf.Clamp(Mathf.Round(finalValue * 100f) / 100f, 0, StatValueCap);
 	}
 
 	private int CompareModifierOrder(StatModifier a, StatModifier b)
@@ -115,20 +116,20 @@ public class Stat
 
 	public bool RemoveAllModifiersFromSource(object source)
 	{
-		_foundSource = false;
+		var foundSource = false;
 
 		for (int i = StatModifiers.Count - 1; i >= 0; i--)
 		{
 			if (StatModifiers[i].Source == source)
 			{
 				hasChanged = true;
-				_foundSource = true;
+				foundSource = true;
 				StatModifiers.RemoveAt(i);
 			}
 		}
 
 		StatModifiedEvent?.Invoke(this);
 
-		return _foundSource;
+		return foundSource;
 	}
 }

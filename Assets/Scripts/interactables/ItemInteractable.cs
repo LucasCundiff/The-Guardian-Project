@@ -16,7 +16,9 @@ public class ItemInteractable : MonoBehaviour, IInteractable
 		var inventory = CharacterTracker.Instance.Player.GetComponent<CharacterInventory>();
 
 		if (inventory && inventory.AddItem(Item))
+		{
 			Destroy(gameObject);
+		}
 	}
 
 	public string InteractDescription()

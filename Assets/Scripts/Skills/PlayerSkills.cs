@@ -9,8 +9,7 @@ public class PlayerSkills : MonoBehaviour
 
 	public Action<int> OnSoulPointsChangedEvent;
 
-	public List<SkillSlot> ManaSkillSlots = new List<SkillSlot>();
-	public List<SkillSlot> StaminaSkillSlots = new List<SkillSlot>();
+	public List<SkillSlot> DisplaySlots = new List<SkillSlot>();
 
 	public List<Skill> AllSkills = new List<Skill>();
 
@@ -29,8 +28,6 @@ public class PlayerSkills : MonoBehaviour
 	public int soulPointsPerLevel = 1;
 	public SkillSlot DragSlot;
 
-	private List<SkillSlot> _usedSlots = new List<SkillSlot>();
-
 	[SerializeField] PlayerLevel playerLevel;
 
 	public void Awake()
@@ -40,21 +37,15 @@ public class PlayerSkills : MonoBehaviour
 		DragSlot.gameObject.SetActive(false);
 
 		IntializeSkills();
-
-		AddEventsToSkillSlots(ManaSkillSlots);
-		AddEventsToSkillSlots(StaminaSkillSlots);
+		AddEventsToSkillSlots(DisplaySlots);
 	}
 
+	//Fix to one set of attacks
 	private void IntializeSkills()
 	{
 		foreach (Skill skill in AllSkills)
 		{
-			if (skill.SkillType == SkillType.ManaSkill)
-				_usedSlots = ManaSkillSlots;
-			else if (skill.SkillType == SkillType.StaminaSkill)
-				_usedSlots = StaminaSkillSlots;
-
-			foreach (SkillSlot skillSlot in _usedSlots)
+			foreach (SkillSlot skillSlot in DisplaySlots)
 			{
 				if (skillSlot.Skill == null)
 				{

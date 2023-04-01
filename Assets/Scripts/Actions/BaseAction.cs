@@ -10,9 +10,8 @@ public class BaseAction : MonoBehaviour
 	public BaseAttack Secondary;
 	public BaseAttack Tertiary;
 	public BaseAttack Quaternary;
-
-	[Range(0, 255)]
-	public int Power;
+	[Range(.05f, 12.5f)]
+	public float PowerMultiplier = 1f;
 	[Range(1, 100)]
 	public int CriticalChance;
 	[Range(1f, 10f)]

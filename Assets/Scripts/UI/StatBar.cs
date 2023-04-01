@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class StatBar : MonoBehaviour
 {
-	[SerializeField] StatBarUIType statType;
+	[SerializeField] ResourceType statType;
 	[SerializeField] Image statBarFill;
 	[SerializeField] CharacterStats user;
 	[SerializeField] PlayerLevel playerLevel;
@@ -15,23 +15,23 @@ public class StatBar : MonoBehaviour
 	{
 		switch (statType)
 		{
-			case StatBarUIType.Health:
+			case ResourceType.Health:
 				user.HealthChangedEvent += UpdateValue;
 				UpdateValue(user.CurrentHealth, user.MaxHealth);
 				break;
-			case StatBarUIType.Mana:
+			case ResourceType.Mana:
 				user.ManaChangedEvent += UpdateValue;
 				UpdateValue(user.CurrentMana, user.MaxMana);
 				break;
-			case StatBarUIType.Stamina:
+			case ResourceType.Stamina:
 				user.StaminaChangedEvent += UpdateValue;
 				UpdateValue(user.CurrentStamina, user.MaxStamina);
 				break;
-			case StatBarUIType.HealthShield:
+			case ResourceType.HealthShield:
 				user.HealthShieldChangedEvent += UpdateValue;
 				UpdateValue(user.HealthShield, user.MaxHealth);
 				break;
-			case StatBarUIType.EXP:
+			case ResourceType.EXP:
 				playerLevel.OnGainExperienceEvent += EventHelper;
 				EventHelper(playerLevel.CurrentExperience, playerLevel.ExperienceNeeded);
 				break;
@@ -42,7 +42,7 @@ public class StatBar : MonoBehaviour
 
 	public void EventHelper(int current, int max)
 	{
-		UpdateValue((float)current, (float)max);
+		UpdateValue(current, max);
 	}
 
 	public void UpdateValue(float currentValue, float maxValue)

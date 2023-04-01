@@ -8,8 +8,7 @@ public class PlayerStatsIncrease : MonoBehaviour
 {
 	[SerializeField] CharacterStats playerStats;
 	[SerializeField] PlayerLevel levelController;
-	[SerializeField] int resourceStatsUpgrade = 5;
-	[SerializeField] int proficienyStatsUpgrade = 1;
+	[SerializeField] float[] statsIncreasePerLevel = new float[13];
 
 	public void Start()
 	{
@@ -18,11 +17,13 @@ public class PlayerStatsIncrease : MonoBehaviour
 
 	private void AddStatPoints()
 	{
-		for (int i = 0; i < 6; i++)
-		{
-			var pointIncrease = i < 3 ? resourceStatsUpgrade : proficienyStatsUpgrade;
+		if (!playerStats) return;
 
-			playerStats.Stats[i].BaseValue += pointIncrease;
+		for (int i = 0; i < playerStats.Stats.Count; i++)
+		{
+			if (statsIncreasePerLevel.Length < i) return;
+
+			playerStats.Stats[i].BaseValue += statsIncreasePerLevel[i];
 		}
 	}
 }

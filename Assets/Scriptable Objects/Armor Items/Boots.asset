@@ -14,28 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Boots
   ItemSprite: {fileID: 21300000, guid: e420c5bc93cb2604695a893500c897e3, type: 3}
-  WorldItem: {fileID: 0}
   GoldCost: 0
   PossibleModifiers:
   - ModifierValue: 5
     ModifierType: 100
-    StatName: Armor
+    StatIndex: 9
     ChanceToRoll: 100
   - ModifierValue: 10
     ModifierType: 100
-    StatName: Health
+    StatIndex: 0
     ChanceToRoll: 50
   - ModifierValue: 10
     ModifierType: 100
-    StatName: Resistance
+    StatIndex: 10
     ChanceToRoll: 30
   - ModifierValue: 10
     ModifierType: 300
-    StatName: Health
+    StatIndex: 0
     ChanceToRoll: 20
   - ModifierValue: 10
     ModifierType: 300
-    StatName: Resistance
+    StatIndex: 10
     ChanceToRoll: 20
   ActualModifiers: []
   ArmorType: 7

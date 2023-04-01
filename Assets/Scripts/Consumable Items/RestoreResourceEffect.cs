@@ -10,7 +10,7 @@ public class RestoreResourceEffect : ConsumableItemEffect
 	public override void UseEffect(CharacterStats user)
 	{
 		if (healthRestore != 0)
-			user.Heal(healthRestore);
+			user.CurrentHealth += healthRestore;
 
 		if (staminaRestore != 0)
 			user.CurrentStamina += staminaRestore;
