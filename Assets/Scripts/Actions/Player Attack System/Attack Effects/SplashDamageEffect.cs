@@ -12,6 +12,7 @@ public class SplashDamageEffect : OnHitAttackEffect
 	public override void InitializeEffect(IDamageable target, float power, CharacterStats source)
 	{
 		var cTarget = (CharacterStats)target;
+		var truePower = power * source.Stats[13].CurrentValue;
 
 		if (cTarget)
 		{
@@ -21,13 +22,13 @@ public class SplashDamageEffect : OnHitAttackEffect
 				{
 					if (!FriendlyFire && character.Faction == source.Faction) continue;
 
-					var damage = cTarget ? Mathf.Clamp(power - power * cTarget.Stats[9].CurrentValue * 0.002f, 1f, Mathf.Infinity) : power;
+					var damage = Mathf.Clamp(truePower - truePower * character.Stats[9].CurrentValue * 0.002f, 1f, Mathf.Infinity);
 					character.TakeDamage(damage);
 				}
 			}
 		}
 		else
-			target.TakeDamage(power);
+			target.TakeDamage(truePower);
 	}
 
 	private bool DetermineDistance(CharacterStats character, CharacterStats cTarget)

@@ -5,44 +5,34 @@ using UnityEngine.AI;
 
 public class SummonChargeAttack : BaseChargeAttack
 {
-	[SerializeField] GameObject summon;
-	[Range(3f, 10f)]
-	[SerializeField] float summonRadius;
+	[SerializeField] BaseSummon summon;
+	[SerializeField] float summonDistance = 10f;
+	[SerializeField] LayerMask spawnableLayers;
 
-	protected int itterationCap = 10;
-	protected int currentItterationCount = 0;
+	protected bool unsummonFirstOnSuccess = false;
 
 	protected override IEnumerator ExecuteCharge()
 	{
+		if (PlayerSummonTracker.Instance.AtSummonLimit(summon.SummonName))
+			unsummonFirstOnSuccess = true;
 
-		currentItterationCount = 0;
-		NavMeshHit summonLocation;
-
-		while (!NavMesh.SamplePosition(transform.position + GetRandomSpawnPosition(), out summonLocation, summonRadius, NavMesh.AllAreas))
-		{
-			currentItterationCount++;
-
-			if (currentItterationCount > itterationCap)
-			{
-				break;
-			}
-		}
-
-		if (currentItterationCount < itterationCap)
+		var ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+		var hitSomething = Physics.Raycast(ray, out var hit, summonDistance, spawnableLayers, QueryTriggerInteraction.Ignore);
+		if (hitSomething && NavMesh.SamplePosition(hit.point, out var summonLocation, summonDistance, NavMesh.AllAreas))
 		{
 			var currentSummon = Instantiate(summon, summonLocation.position, Quaternion.identity, null).GetComponent<BaseSummon>();
-			var summonPower = DeterminePower();
-			currentSummon.Summon(User, summonPower);
+
+			if (unsummonFirstOnSuccess)
+				PlayerSummonTracker.Instance.CurrentSummons[summon.SummonName][0].Unsummon();
+
+			currentSummon.Summon(User, this);
+		}
+		else
+		{
+			RefundAttackCost();
+			unsummonFirstOnSuccess = false;
 		}
 
 		yield return base.ExecuteCharge();
-	}
-
-	private Vector3 GetRandomSpawnPosition()
-	{
-		var randomRadius = Random.Range(3f, summonRadius);
-		var randomPosition = Random.insideUnitSphere * randomRadius;
-
-		return randomPosition;
 	}
 }

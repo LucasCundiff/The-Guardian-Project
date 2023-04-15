@@ -5,31 +5,33 @@ using UnityEngine;
 
 public class BaseSummon : MonoBehaviour
 {
-	[SerializeField] CharacterStats stats;
-	[SerializeField] BaseSummonAI summonAI;
-	[SerializeField] float summonDuration;
+	[Range(20, 300)]
+	public float SummonDuration;
+	[Range(1, 15)]
+	public int SummonLimit = 1;
+	public string SummonName;
 
-	internal void Summon(CharacterStats currentUser, float power)
+	protected CharacterStats user;
+	protected BaseAttack parentAttack;
+
+	public virtual void Summon(CharacterStats currentUser, BaseAttack attack)
 	{
-		stats.Faction = currentUser.Faction;
-		stats.OnDeathEvent += Unsummon;
+		user = currentUser;
+		parentAttack = attack;
 
-		summonAI.SetNewSummonCharacter(currentUser);
-
-		foreach (Stat stat in stats.Stats)
-		{
-			stat.BaseValue *= power;
-		}
-
-		summonDuration *= power;
+		PlayerSummonTracker.Instance.AddSummon(this);
 		StartCoroutine(UnsummonCoroutine());
 	}
 
 	private IEnumerator UnsummonCoroutine()
 	{
-		yield return new WaitForSeconds(summonDuration);
+		yield return new WaitForSeconds(SummonDuration);
 		Unsummon();
 	}
 
-	protected virtual void Unsummon() => Destroy(gameObject);
+	public virtual void Unsummon()
+	{
+		PlayerSummonTracker.Instance.RemoveSummon(this);
+		Destroy(gameObject);
+	}
 }

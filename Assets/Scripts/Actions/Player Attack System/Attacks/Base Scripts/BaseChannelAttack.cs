@@ -37,9 +37,9 @@ public class BaseChannelAttack : BaseAttack
 	{
 		if (isChanneling)
 		{
-			if (CanUseAttack())
+			if (HasAttackPrerequisite())
 			{
-				PayAttackCost();
+				UseAttackPrerequisites();
 				DuringChannel();
 			}
 			else
@@ -72,47 +72,32 @@ public class BaseChannelAttack : BaseAttack
 		gameObject.SetActive(false);
 	}
 
-	public override void PayAttackCost()
-	{
-		User.CurrentMana -= manaPerSecondCostCache;
-		User.CurrentStamina -= staminaPerSecondCostCache;
-		User.CurrentHealth -= healthPerSecondCostCache;
-	}
-
-	public override bool CanUseAttack()
-	{
-		if (ManaCost != 0)
-		{
-			manaPerSecondCostCache = (ManaCost + (CostIncreasePerSecond * (int)channelTime)) * Time.deltaTime;
-
-			if (User.CurrentMana < manaPerSecondCostCache)
-				return false;
-		}
-
-		if (StaminaCost != 0)
-		{
-			staminaPerSecondCostCache = (StaminaCost + (CostIncreasePerSecond * (int)channelTime)) * Time.deltaTime * User.Stats[7].CurrentValue;
-
-			if (User.CurrentStamina < staminaPerSecondCostCache)
-				return false;
-		}
-		
-		if (HealthCost != 0)
-		{
-			healthPerSecondCostCache = (HealthCost + (CostIncreasePerSecond * (int)channelTime)) * Time.deltaTime;
-
-			if (User.CurrentHealth < healthPerSecondCostCache)
-				return false;
-		}
-
-		return true;
-	}
-
 	public override float DeterminePower()
 	{
 		var attackPower = base.DeterminePower();
 		var channelPowerIncrease = 1 + PowerMultiplierPerSecond * channelTime;
-		attackPower *= channelPowerIncrease * User.Stats[7].CurrentValue * Time.deltaTime;
+		attackPower *= channelPowerIncrease * (1 + (User.Stats[7].CurrentValue * 0.01f))* Time.deltaTime;
 		return attackPower;
+	}
+
+	public override float GetHealthCost()
+	{
+		if (HealthCost == 0) return 0f;
+
+		return (HealthCost + (CostIncreasePerSecond * (int)channelTime)) * Time.deltaTime * (1 + (User.Stats[7].CurrentValue * 0.01f));
+	}
+
+	public override float GetManaCost()
+	{
+		if (ManaCost == 0) return 0f;
+
+		return (ManaCost + (CostIncreasePerSecond * (int)channelTime)) * (1 - (User.Stats[5].CurrentValue * 0.01f)) * Time.deltaTime * (1 + (User.Stats[7].CurrentValue * 0.01f));
+	}
+
+	public override float GetStaminaCost()
+	{
+		if (StaminaCost == 0) return 0f;
+
+		return (StaminaCost + (CostIncreasePerSecond * (int)channelTime)) * (1 - (User.Stats[6].CurrentValue * 0.01f)) * Time.deltaTime * (1 + (User.Stats[7].CurrentValue * 0.01f));
 	}
 }

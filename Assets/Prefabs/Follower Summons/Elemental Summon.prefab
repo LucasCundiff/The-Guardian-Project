@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 1634057668600800341}
   - component: {fileID: 1634057668600800342}
   - component: {fileID: 1634057668600800346}
-  - component: {fileID: 1634057668600800347}
   - component: {fileID: 1634057668600800344}
-  - component: {fileID: -2169780954998631946}
   - component: {fileID: -1436481612281615907}
+  - component: {fileID: -401035364174678009}
+  - component: {fileID: -5066645117070344431}
   m_Layer: 6
   m_Name: Elemental Summon
   m_TagString: Untagged
@@ -101,7 +101,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1634057668600800336}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2
@@ -116,50 +116,13 @@ Rigidbody:
   m_GameObject: {fileID: 1634057668600800336}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 1
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &1634057668600800347
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1634057668600800336}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8014d3e7253917a468fcb66b2c8bbd5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Faction: {fileID: 0}
-  Stats:
-  - StatName: Health
-    baseValue: 100
-  - StatName: Mana
-    baseValue: 200
-  - StatName: Stamina
-    baseValue: 200
-  - StatName: Melee Proficiency
-    baseValue: 5
-  - StatName: Ranged Proficiency
-    baseValue: 5
-  - StatName: Mana Proficiency
-    baseValue: 5
-  - StatName: Stamina Proficiency
-    baseValue: 5
-  - StatName: Armor
-    baseValue: 0
-  - StatName: Resistance
-    baseValue: 0
-  - StatName: Regeneration
-    baseValue: 0.5
-  - StatName: Movement Speed
-    baseValue: 5
-  IsDead: 0
 --- !u!195 &1634057668600800344
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -182,21 +145,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &-2169780954998631946
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1634057668600800336}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b034c8e61575c645a562e0fd098638b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stats: {fileID: 1634057668600800347}
-  summonAI: {fileID: -1436481612281615907}
-  summonDuration: 120
 --- !u!114 &-1436481612281615907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,8 +158,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
-  user: {fileID: 1634057668600800347}
+  user: {fileID: -401035364174678009}
   navAgent: {fileID: 1634057668600800344}
+  summon: {fileID: -5066645117070344431}
   targetChaseDistance: 15
   targetAttackDistance: 2
   attackTable:
@@ -219,6 +168,105 @@ MonoBehaviour:
     Attack: {fileID: 2396373482210485376}
   - Weight: 50
     Attack: {fileID: 7235271375386226260}
+--- !u!114 &-401035364174678009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1634057668600800336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8014d3e7253917a468fcb66b2c8bbd5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Faction: {fileID: 11400000, guid: c5d98a877005d1e4e8993f5b538f7141, type: 2}
+  Stats:
+  - StatName: Health
+    StatValueCap: Infinity
+    StatDescription: This is the maximum damage you can take before you die
+    baseValue: 100
+  - StatName: Mana
+    StatValueCap: Infinity
+    StatDescription: This is the maximum amount of mana your character can have
+    baseValue: 200
+  - StatName: Stamina
+    StatValueCap: Infinity
+    StatDescription: This is the maximum amount of stamina your character can have
+    baseValue: 200
+  - StatName: Melee Proficiency
+    StatValueCap: 500
+    StatDescription: Each point you acquire will increase the power of your melee
+      attack by 1%
+    baseValue: 1
+  - StatName: Ranged Proficiency
+    StatValueCap: 500
+    StatDescription: Each point you acquire will increase the power of your ranged
+      attack by 1%
+    baseValue: 1
+  - StatName: Mana Proficiency
+    StatValueCap: 100
+    StatDescription: Each point you acquire will reduce the cost of your mana attacks
+      by 1%
+    baseValue: 1
+  - StatName: Stamina Proficiency
+    StatValueCap: 100
+    StatDescription: Each point you acquire will reduce the cost of your stamina
+      attacks by 1%
+    baseValue: 1
+  - StatName: Attack Speed
+    StatValueCap: 500
+    StatDescription: Each point you acquire will increase the speed of your attacks
+      by 1%
+    baseValue: 1
+  - StatName: Cooldown Reduction
+    StatValueCap: 100
+    StatDescription: Each point you acquire will reduce your cooldown times by 1%
+    baseValue: 1
+  - StatName: Armor
+    StatValueCap: 500
+    StatDescription: Each point you acquire will reduce incoming damage by 0.002%
+    baseValue: 0
+  - StatName: Resistance
+    StatValueCap: 500
+    StatDescription: Decreases the power of negative effects by 0.002% for each point
+    baseValue: 0
+  - StatName: Regeneration
+    StatValueCap: 500
+    StatDescription: Health regenerates by this amount per second, while Mana and
+      Stamina regenerate at three times this rate
+    baseValue: 0.5
+  - StatName: Movement Speed
+    StatValueCap: 50
+    StatDescription: This is the speed at which your character moves through the
+      world
+    baseValue: 5
+  - StatName: Damage Multipler
+    StatValueCap: 100
+    StatDescription: This is a direct multiplier to your damage
+    baseValue: 1
+  - StatName: Damage Received
+    StatValueCap: 100
+    StatDescription: This is a direct multiplier to damage you take
+    baseValue: 1
+  IsDead: 0
+--- !u!114 &-5066645117070344431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1634057668600800336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f0708c7fd1657e4b9f4e773f78998de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SummonDuration: 60
+  SummonLimit: 2
+  SummonName: Elemental
+  summonStats: {fileID: -401035364174678009}
+  summonAI: {fileID: -1436481612281615907}
 --- !u!1 &1634057668620150694
 GameObject:
   m_ObjectHideFlags: 0
@@ -535,7 +583,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statType: 0
   statBarFill: {fileID: 1634057668620150692}
-  user: {fileID: 1634057668600800347}
+  user: {fileID: -401035364174678009}
   playerLevel: {fileID: 0}
 --- !u!1 &4610865056862380043
 GameObject:
@@ -642,16 +690,11 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 1634057668600800343}
     m_Modifications:
-    - target: {fileID: 1989465638067691276, guid: fe1934ee86a6c8a47b6001bdc923f36c,
-        type: 3}
-      propertyPath: user
-      value: 
-      objectReference: {fileID: 1634057668600800347}
     - target: {fileID: 3473767426160781599, guid: fe1934ee86a6c8a47b6001bdc923f36c,
         type: 3}
       propertyPath: user
       value: 
-      objectReference: {fileID: 1634057668600800347}
+      objectReference: {fileID: -401035364174678009}
     - target: {fileID: 3847620830179306800, guid: fe1934ee86a6c8a47b6001bdc923f36c,
         type: 3}
       propertyPath: m_RootOrder
@@ -755,7 +798,7 @@ PrefabInstance:
         type: 3}
       propertyPath: user
       value: 
-      objectReference: {fileID: 1634057668600800347}
+      objectReference: {fileID: -401035364174678009}
     - target: {fileID: 7054529697779129254, guid: b8e1d1dcee8d7904f9e32598a22e2e75,
         type: 3}
       propertyPath: m_Name

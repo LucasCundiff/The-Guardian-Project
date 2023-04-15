@@ -26,6 +26,7 @@ public class ItemTooltip : MonoBehaviour
 			nameText.text = itemToDisplay.ItemName;
 			modifierText.text = itemToDisplay.ItemDescription;
 
+			gameObject.transform.position = Mouse.current.position.ReadValue();
 			gameObject.SetActive(true);
 		}		
 	}

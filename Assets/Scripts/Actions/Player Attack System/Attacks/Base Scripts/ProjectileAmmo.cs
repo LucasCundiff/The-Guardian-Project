@@ -12,39 +12,43 @@ public class ProjectileAmmo : MonoBehaviour
 	[SerializeField] float projectileDuration = 10f;
 	[SerializeField] List<int> stopProjectileLayers = new List<int> { 6, 7 };
 
-	protected CharacterStats currentUser;
+	protected CharacterStats user;
 	protected BaseAttack currentAttack;
 
 	public virtual void InitializeAmmo(CharacterStats user, BaseAttack baseAttack)
 	{
 		if (!rb) rb = GetComponent<Rigidbody>();
 
-		currentUser = user;
+		this.user = user;
 		currentAttack = baseAttack;
 
 		rb.AddRelativeForce(projectileDirection * projectileSpeed, forceType);
 		StartCoroutine(SelfDestruct());
 	}
 
-	protected IEnumerator SelfDestruct()
+	protected virtual IEnumerator SelfDestruct()
 	{
 		yield return new WaitForSeconds(projectileDuration);
-
-		Destroy(gameObject);
+		EndProjectile();
 	}
 
-	protected void OnTriggerEnter(Collider other)
+	protected virtual void OnTriggerEnter(Collider other)
 	{
 		currentAttack.PossibleTargetHit(other);
 		CheckStopLayer(other);
 	}
 
-	private void CheckStopLayer(Collider other)
+	protected virtual void CheckStopLayer(Collider other)
 	{
 		foreach (int layerValue in stopProjectileLayers)
 		{
 			if (layerValue == other.gameObject.layer)
-				Destroy(gameObject);
+				EndProjectile();
 		}
+	}
+
+	protected virtual void EndProjectile()
+	{
+		Destroy(gameObject);
 	}
 }

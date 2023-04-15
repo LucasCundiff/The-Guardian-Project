@@ -52,24 +52,29 @@ public class BaseChargeAttack : BaseAttack
 	protected void StartCharge(InputAction.CallbackContext obj) => StartCharge();
 	protected virtual void StartCharge()
 	{
-		if (currentAction && !currentAction.IsAttacking)
+		if (currentAction && !currentAction.IsAttacking && HasAttackPrerequisite())
 		{
+			UseAttackPrerequisites();
+
 			isCharging = true;
 			chargeTime = 0f;
 			gameObject.SetActive(true);
 		}
 	}
 
-	protected void FailCharge(InputAction.CallbackContext obj) => gameObject.SetActive(false);
+	protected void FailCharge(InputAction.CallbackContext obj)
+	{
+		if (isCharging)
+		{
+			RefundAttackCost();
+			gameObject.SetActive(false);
+		}
+	}
+
 	protected virtual void CompleteCharge()
 	{
 		isCharging = false;
-
-		if (CanUseAttack())
-		{
-			PayAttackCost();
-			StartCoroutine(ExecuteCharge());
-		}
+		StartCoroutine(ExecuteCharge());
 	}
 
 	protected virtual IEnumerator ExecuteCharge()

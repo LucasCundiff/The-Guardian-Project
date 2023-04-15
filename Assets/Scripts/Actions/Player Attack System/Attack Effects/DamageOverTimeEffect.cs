@@ -12,7 +12,11 @@ public class DamageOverTimeEffect : OnHitAttackEffect
 	public override void InitializeEffect(IDamageable target, float power, CharacterStats source)
 	{
 		var cTarget = (CharacterStats)target;
-		var damage = cTarget ? Mathf.Clamp(power - power * cTarget.Stats[9].CurrentValue * 0.002f, 1f, Mathf.Infinity) : power;
+
+		if (cTarget.Faction == source.Faction) return;
+
+		var truePower = power * source.Stats[13].CurrentValue;
+		var damage = cTarget ? Mathf.Clamp(truePower - truePower * cTarget.Stats[9].CurrentValue * 0.002f, 1f, Mathf.Infinity) : truePower;
 		var damagePerTick = damage / EffectDuration;
 
 		source?.StartCoroutine(DamageOverTime(target, damagePerTick));

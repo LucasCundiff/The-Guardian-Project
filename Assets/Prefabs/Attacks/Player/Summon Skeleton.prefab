@@ -47,8 +47,14 @@ MonoBehaviour:
   StaminaCost: 0
   ManaCost: 5
   HealthCost: 5
-  attackDuration: 0.9
-  PowerMultiplier: 0.5
+  defaultAttackSpeed: 1
+  attackCooldown: 0
+  UseMeleeProficency: 0
+  UseRangedProficency: 0
+  Power: 1
   onTargetHitEffects: []
-  summon: {fileID: 1634057668600800336, guid: e9bf51de73c84a143a226cafad087733, type: 3}
-  summonRadius: 6
+  summon: {fileID: -4213431451780469624, guid: e9bf51de73c84a143a226cafad087733, type: 3}
+  summonDistance: 20
+  spawnableLayers:
+    serializedVersion: 2
+    m_Bits: 129

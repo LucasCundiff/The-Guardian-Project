@@ -4,6 +4,7 @@ using UnityEngine;
 public class StatPanelUI : MonoBehaviour
 {
 	[SerializeField] Transform statsParent;
+	[SerializeField] StatTooltip statTooltip;
 
 	private List<StatUI> statUIs = new List<StatUI>();
 
@@ -21,6 +22,8 @@ public class StatPanelUI : MonoBehaviour
 			if (userStats.Stats[i] != null)
 			{
 				statUIs[i].SetStat(userStats.Stats[i]);
+				statUIs[i].OnPointerEnterEvent += statTooltip.ShowTooltip;
+				statUIs[i].OnPointerExitEvent += statTooltip.HideTooltip;
 			}
 		}
 	}

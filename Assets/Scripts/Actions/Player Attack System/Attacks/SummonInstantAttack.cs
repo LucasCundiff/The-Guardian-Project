@@ -2,41 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem;
 
 public class SummonInstantAttack : BaseInstantAttack
 {
-	[SerializeField] GameObject summon;
-	[Range(3f, 10f)]
-	[SerializeField] float summonRadius;
+	[SerializeField] BaseSummon summon;
+	[SerializeField] float summonDistance = 10f;
+	[SerializeField] LayerMask spawnableLayers;
 
-	protected int itterationCap = 10;
-	protected int currentItterationCount = 0;
+	protected bool unsummonFirstOnSuccess = false;
 
 	protected override void StartAttack()
 	{
 		base.StartAttack();
 
-		currentItterationCount = 0;
-		NavMeshHit summonLocation;
+		if (PlayerSummonTracker.Instance.AtSummonLimit(summon.SummonName))
+			unsummonFirstOnSuccess = true;
 
-		while (!NavMesh.SamplePosition(transform.position + GetRandomSpawnPosition(), out summonLocation, summonRadius, NavMesh.AllAreas))
+		var ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+		var hitSomething = Physics.Raycast(ray, out var hit, summonDistance, spawnableLayers, QueryTriggerInteraction.Ignore);
+		if (hitSomething && NavMesh.SamplePosition(hit.point, out var summonLocation, summonDistance, NavMesh.AllAreas))
 		{
-			currentItterationCount++;
+			var currentSummon = Instantiate(summon, summonLocation.position, Quaternion.identity, null).GetComponent<BaseSummon>();
 
-			if (currentItterationCount > itterationCap)
-				return;
+			if (unsummonFirstOnSuccess)
+				PlayerSummonTracker.Instance.CurrentSummons[summon.SummonName][0].Unsummon();
+
+			currentSummon.Summon(User, this);
 		}
-
-		var currentSummon = Instantiate(summon, summonLocation.position, Quaternion.identity, null).GetComponent<BaseSummon>();
-		var summonPower = DeterminePower();
-		currentSummon.Summon(User, summonPower);
-	}
-
-	private Vector3 GetRandomSpawnPosition()
-	{
-		var randomRadius = Random.Range(3f, summonRadius);
-		var randomPosition = Random.insideUnitSphere * randomRadius;
-
-		return randomPosition;
+		else
+		{
+			RefundAttackCost();
+			unsummonFirstOnSuccess = false;
+		}
 	}
 }

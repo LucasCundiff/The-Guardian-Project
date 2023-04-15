@@ -9,8 +9,9 @@ public class ModifyStatEffect : ConsumableItemEffect
 	[Range(10, 120)]
 	[SerializeField] float EffectDuration;
 	[Space]
-	[Tooltip("0. = Health, 1 = Mana, 2 = Stamina, 3 = Melee Proficiency, 4 = Ranged Proficiency, 5 = Mana Proficiency, 6 = Stamina Proficiency, 7 = Attack Speed, 8 = Cooldown Reduction, 9 = Armor, 10 = Resistance, 11 = Regeneration, 12 = Movement Speed")]
-	[SerializeField] int[] StatsModifyAmount = new int[13];
+	[Tooltip("0. = Health, 1 = Mana, 2 = Stamina, 3 = Melee Proficiency, 4 = Ranged Proficiency, 5 = Mana Proficiency, 6 = Stamina Proficiency, 7 = Attack Speed, 8 = Cooldown Reduction, 9 = Armor, 10 = Resistance," +
+		" 11 = Regeneration, 12 = Movement Speed, 13 = Damage Multiplier, 14 = Damage Received")]
+	[SerializeField] int[] StatsModifyAmount = new int[14];
 
 	public override void UseEffect(CharacterStats user)
 	{

@@ -15,6 +15,7 @@ public class ManaDrainEffect : OnHitAttackEffect
 		if (cTarget)
 		{
 			var drainAmount = IgnorePower ? ManaDrainAmount : power;
+			drainAmount = Mathf.Clamp(drainAmount - drainAmount * cTarget.Stats[10].CurrentValue * 0.002f, 0, Mathf.Infinity);
 			cTarget.CurrentMana -= drainAmount;
 		}
 	}

@@ -78,7 +78,7 @@ public class Stat
 			}
 		}
 
-		return Mathf.Clamp(Mathf.Round(finalValue * 100f) / 100f, 0, StatValueCap);
+		return Mathf.Clamp(Mathf.Round(finalValue * 100f) / 100f, -100, StatValueCap);
 	}
 
 	private int CompareModifierOrder(StatModifier a, StatModifier b)

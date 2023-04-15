@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4647828083213139910
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4647828083213139913}
+  - component: {fileID: 812853243682866846}
+  m_Layer: 0
+  m_Name: Summon Test AOE
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4647828083213139913
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4647828083213139910}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.6, y: 0.2, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &812853243682866846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4647828083213139910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5657fb14e9c91544a915ce61e388e16e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StaminaCost: 0
+  ManaCost: 10
+  HealthCost: 0
+  defaultAttackSpeed: 0.5
+  attackCooldown: 1.5
+  UseMeleeProficency: 0
+  UseRangedProficency: 1
+  Power: 10
+  onTargetHitEffects:
+  - {fileID: 11400000, guid: 7f8e71f052c6dcb418117f6c837217b7, type: 2}
+  summon: {fileID: 2147315234793445441, guid: b4811f8f31c09624d8bd737da8c4874b, type: 3}
+  summonDistance: 10
+  spawnableLayers:
+    serializedVersion: 2
+    m_Bits: 129

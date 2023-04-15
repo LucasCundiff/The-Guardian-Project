@@ -110,10 +110,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c0d577f4dbd3964d8a288e070094efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StaminaCost: -0.5
+  StaminaCost: 0
   ManaCost: 0
   HealthCost: 0
-  attackDuration: 1
-  PowerMultiplier: 0.95
+  defaultAttackSpeed: 1
+  attackCooldown: 0
+  UseMeleeProficency: 1
+  UseRangedProficency: 0
+  Power: 50
   onTargetHitEffects:
-  - {fileID: 6935310698061611310, guid: f8fc7c1aaafb3ae40a15af9114699650, type: 3}
+  - {fileID: 11400000, guid: 7f8e71f052c6dcb418117f6c837217b7, type: 2}
+  - {fileID: 11400000, guid: 632219e5d8d84834c9d850b0c2cca605, type: 2}

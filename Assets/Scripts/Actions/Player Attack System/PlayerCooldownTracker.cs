@@ -74,4 +74,13 @@ public class PlayerCooldownTracker : MonoBehaviour
 
 		return Mathf.Infinity;
 	}
+
+	public void EndCooldown(BaseAttack attack)
+	{
+		foreach (AttackCooldown cooldown in AttackCooldowns)
+		{
+			if (cooldown.AttackName == attack.name)
+				AttackCooldowns.Remove(cooldown);
+		}
+	}
 }

@@ -45,13 +45,14 @@ public class PlayerInteraction : MonoBehaviour
 		else
 		{
 			ToggleInteractionText(false);
+			currentInteraction = null;
 			interactionText.text = null;
 		}
 	}
 
 	private void ToggleInteractionText(bool state)
 	{
-		if (state)
+		if (state && currentInteraction != null)
 		{
 			interactionText.text = currentInteraction.InteractDescription();
 			interactionTextParent.SetActive(true);

@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 
 public class BaseSummonAI : AIStateMachine
 {
+	[SerializeField] BaseSummon summon;
 	[SerializeField] protected float targetChaseDistance;
 	[SerializeField] protected float targetAttackDistance;
 	[SerializeField] protected List<EnemyAttackTableData> attackTable = new List<EnemyAttackTableData>();
@@ -14,16 +15,17 @@ public class BaseSummonAI : AIStateMachine
 	protected CharacterStats followCharacter;
 	protected Vector3 previousFollowCharacterPosition;
 	protected bool isAttacking;
-	protected Vector3 followOffset;
-	protected float zFollowDistance = -3f;
-	protected Vector2 xFollowDistanceRange = new Vector2(-4f, 4f);
-	protected float catchupDistance = 25f;
+	//protected Vector3 followOffset;
+	//protected float zFollowDistance = -3f;
+	//protected Vector2 xFollowDistanceRange = new Vector2(-4f, 4f);
+	protected float catchupDistance = 30f;
+	protected float followDistance = 5f;
 
 	protected void Start()
 	{
-		var xOffset = Random.Range(xFollowDistanceRange.x, xFollowDistanceRange.y);
+		//var xOffset = Random.Range(xFollowDistanceRange.x, xFollowDistanceRange.y);
 
-		followOffset = new Vector3(xOffset, 0, zFollowDistance);
+		//followOffset = new Vector3(xOffset, 0, zFollowDistance);
 	}
 
 	public void SetNewSummonCharacter(CharacterStats newCharacter) => followCharacter = newCharacter;
@@ -74,7 +76,7 @@ public class BaseSummonAI : AIStateMachine
 
 	protected AIState IdleStateTransition()
 	{
-		if (FollowTargetHasMoved())
+		if (NeedToFollow())
 			return AIState.Follow;
 
 		return AIState.Idle;
@@ -82,14 +84,20 @@ public class BaseSummonAI : AIStateMachine
 
 	protected AIState FollowStateTransition()
 	{
-		if (!FollowTargetHasMoved() && navAgent.path.status == NavMeshPathStatus.PathComplete)
+		if (!NeedToFollow() && (navAgent.path.status == NavMeshPathStatus.PathComplete || navAgent.path.status == NavMeshPathStatus.PathInvalid))
 			return AIState.Idle;
 
 		return AIState.Follow;
 	}
 
-	protected bool FollowTargetHasMoved()
+	protected bool NeedToFollow()
 	{
+		/*
+		var currentDistance = Vector3.Distance(followCharacter.transform.position, transform.position);
+
+		return currentDistance > followDistance;
+		*/
+
 		return previousFollowCharacterPosition != followCharacter.transform.position;
 	}
 
@@ -142,7 +150,8 @@ public class BaseSummonAI : AIStateMachine
 
 	protected void RunCatchupState()
 	{
-		var offset = followCharacter.transform.InverseTransformDirection(followOffset);
+		var randomPos = new Vector3(Random.Range(-5f, 5f), 0f, Random.Range(-5f, 5f));
+		var offset = followCharacter.transform.InverseTransformDirection(randomPos);
 
 		if (NavMesh.SamplePosition(followCharacter.transform.position + offset, out var navMeshHit, catchupDistance, NavMesh.AllAreas))
 			transform.position = navMeshHit.position;
@@ -150,11 +159,26 @@ public class BaseSummonAI : AIStateMachine
 
 	protected void RunFollowState()
 	{
+		//var randomPos = new Vector3(Random.Range(-5f, 5f), 0f, Random.Range(-5f, 5f));
 		previousFollowCharacterPosition = followCharacter.transform.position;
+
+		var index = PlayerSummonTracker.Instance.AllSummons.IndexOf(summon);
+		Debug.Log($"Index for {summon.gameObject.name}: {index}");
+
+		// Check if the index is within range
+		if (index < 0 || index >= PlayerSummonTracker.Instance.SummonOffsets.Count)
+		{
+			Debug.Log($"Invalid index for summon offset: {index}");
+			return;
+		}
+
+		var followOffset = PlayerSummonTracker.Instance.SummonOffsets[PlayerSummonTracker.Instance.AllSummons.IndexOf(summon)];
 		var offset = followCharacter.transform.InverseTransformDirection(followOffset);
 
+		if (NavMesh.SamplePosition(followCharacter.transform.position + offset, out var navMeshHit, followDistance, NavMesh.AllAreas))
+			navAgent.SetDestination(navMeshHit.position);
+		
 		//Add ways to avoid other characters in the scene
-		navAgent.SetDestination(followCharacter.transform.position + offset);
 	}
 
 	protected void RunChaseState()

@@ -14,9 +14,9 @@ public class BaseInstantAttack : BaseAttack
 
 	private void UseAttack(InputAction.CallbackContext obj)
 	{
-		if (currentAction && !currentAction.IsAttacking && CanUseAttack())
+		if (currentAction && !currentAction.IsAttacking && HasAttackPrerequisite())
 		{
-			PayAttackCost();
+			UseAttackPrerequisites();
 			StartAttack();
 			StartCoroutine(EndAttack());
 		}

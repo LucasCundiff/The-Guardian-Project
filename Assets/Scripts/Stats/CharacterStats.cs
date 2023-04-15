@@ -13,21 +13,21 @@ public class CharacterStats : MonoBehaviour, IDamageable
 	/// </summary>
 	public List<Stat> Stats = new List<Stat>
 	{
-		new Stat(100f, Mathf.Infinity,"Health", "The total amount of damage you can take before dying"),
-		new Stat(200f, Mathf.Infinity,"Mana", "Used to pay mana cost of certain attacks"),
-		new Stat(200f, Mathf.Infinity,"Stamina", "Used to pay stamina cost of certain attacks"),
-		new Stat(1f, 50f,"Melee Proficiency", "A direct multipler to the power of melee attacks"),
-		new Stat(1f, 50f,"Ranged Proficiency", "A direct multipler to the power of ranged attacks"),
-		new Stat(1f, 50f,"Mana Proficiency", "Divides the cost of mana skills by this amount"),
-		new Stat(1f, 50f,"Stamina Proficiency", "Divides the cost of stamina skills by this amount"),
-		new Stat(1f, 5f,"Attack Speed", "Divides the time it takes for an attack by this amount"),
-		new Stat(1f, 5f,"Cooldown Reduction", "A direct multipler to your cooldown times"),
-		new Stat(0f, 500f,"Armor", "Decreases incoming damage by 0.002% for each point"),
-		new Stat(0f, 500f,"Resistance", "Decreases the power of hostile attack effects by 0.002% for each point"),
-		new Stat(0.5f, 50f,"Regeneration", "Regenerates Health by this amount per second, 3x as much for Mana and Stamina"),
-		new Stat(5f, 50f,"Movement Speed", "The speed at which you move through the world"),
-		new Stat(1f, 100f,"Damage Multipler", "A direct multipler to your outgoing damage"),
-		new Stat(1f, 100f,"Damage Received", "A direct multipler to incoming damage"),
+		new Stat(100f, Mathf.Infinity,"Health", "This is the maximum damage you can take before you die"),
+		new Stat(200f, Mathf.Infinity,"Mana", "This is the maximum amount of mana your character can have"),
+		new Stat(200f, Mathf.Infinity,"Stamina", "This is the maximum amount of stamina your character can have"),
+		new Stat(1f, 500f,"Melee Proficiency", "Each point you acquire will increase the power of your melee attack by 1%"),
+		new Stat(1f, 500f,"Ranged Proficiency", "Each point you acquire will increase the power of your ranged attack by 1%"),
+		new Stat(1f, 100f,"Mana Proficiency", "Each point you acquire will reduce the cost of your mana attacks by 1%"),
+		new Stat(1f, 100f,"Stamina Proficiency", "Each point you acquire will reduce the cost of your stamina attacks by 1%"),
+		new Stat(1f, 500f,"Attack Speed", "Each point you acquire will increase the speed of your attacks by 1%"),
+		new Stat(1f, 100f,"Cooldown Reduction", "Each point you acquire will reduce your cooldown times by 1%"),
+		new Stat(0f, 500f,"Armor", "Each point you acquire will reduce incoming damage by 0.002%"),
+		new Stat(0f, 500f,"Resistance", "Decreases the power of negative effects by 0.002% for each point"),
+		new Stat(0.5f, 500f,"Regeneration", "Health regenerates by this amount per second, while Mana and Stamina regenerate at three times this rate"),
+		new Stat(5f, 50f,"Movement Speed", "This is the speed at which your character moves through the world"),
+		new Stat(1f, 100f,"Damage Multiplier", "This is a direct multiplier to your damage"),
+		new Stat(1f, 100f,"Damage Received", "This is a direct multiplier to damage you take"),
 	};
 
 	public Action<float, float> HealthChangedEvent;
@@ -134,10 +134,10 @@ public class CharacterStats : MonoBehaviour, IDamageable
 				CurrentHealth += regenerationAmount;
 
 			if (CurrentMana < MaxMana)
-				CurrentMana += regenerationAmount * 2;
+				CurrentMana += regenerationAmount * resourceRegenerationMuliplier;
 
 			if (CurrentStamina < MaxStamina)
-				CurrentStamina += regenerationAmount * 2;
+				CurrentStamina += regenerationAmount * resourceRegenerationMuliplier;
 
 			yield return new WaitForSeconds(1f);
 		}
@@ -171,7 +171,7 @@ public class CharacterStats : MonoBehaviour, IDamageable
 	{
 		if (damage > 0)
 		{
-			var damageToTake = damage;
+			var damageToTake = damage * Stats[14].CurrentValue;
 
 			if (HealthShield > 0)
 			{
@@ -182,7 +182,9 @@ public class CharacterStats : MonoBehaviour, IDamageable
 			CurrentHealth -= damageToTake;
 
 			if (CurrentHealth <= 0)
+			{
 				Die();
+			}
 
 			return true;
 		}

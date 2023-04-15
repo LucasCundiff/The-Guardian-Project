@@ -29,11 +29,11 @@ Transform:
   m_GameObject: {fileID: 8727937145406272319}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.598}
-  m_LocalScale: {x: 0.6, y: 0.2, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5247697720149987265
 MeshFilter:
@@ -100,10 +100,14 @@ MonoBehaviour:
   StaminaCost: 0
   ManaCost: 3
   HealthCost: 0
-  attackDuration: 0.3
-  PowerMultiplier: 0.75
+  defaultAttackSpeed: 1
+  attackCooldown: 0
+  UseMeleeProficency: 0
+  UseRangedProficency: 0
+  Power: 2
   onTargetHitEffects:
-  - {fileID: 1716273143167968027, guid: f0431ed828a98f04787b80543c3e9e36, type: 3}
+  - {fileID: 11400000, guid: 2ce141a34f29687458364ca01446c199, type: 2}
+  - {fileID: 11400000, guid: 7f8e71f052c6dcb418117f6c837217b7, type: 2}
   CostIncreasePerSecond: 2
   PowerMultiplierPerSecond: 0.1
 --- !u!65 &1109343612425528340

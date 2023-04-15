@@ -18,11 +18,12 @@ public class DisplaceEffect : OnHitAttackEffect
 	public override void InitializeEffect(IDamageable target, float power, CharacterStats source)
 	{
 		var viableTarget = (CharacterStats)target;
-		var targetRb = viableTarget.GetComponent<Rigidbody>();
+		var targetRb = viableTarget?.GetComponent<Rigidbody>();
 		var forceMultipler = IgnorePower ? ForceMultiplier : power;
 
 		if (targetRb != null)
 		{
+			forceMultipler = Mathf.Clamp(forceMultipler - forceMultipler * viableTarget.Stats[10].CurrentValue * 0.002f, 0f, Mathf.Infinity);
 			var knockbackDirection = source.transform.position - viableTarget.transform.position;
 			knockbackDirection = source.transform.InverseTransformVector(knockbackDirection);
 			knockbackDirection.Normalize();

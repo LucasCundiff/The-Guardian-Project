@@ -110,10 +110,10 @@ GameObject:
   - component: {fileID: 1634057668600800341}
   - component: {fileID: 1634057668600800346}
   - component: {fileID: 1634057668600800351}
-  - component: {fileID: 8223068913962617554}
   - component: {fileID: 1634057668600800344}
   - component: {fileID: 4899246594812973014}
   - component: {fileID: 9928933964114504}
+  - component: {fileID: -4437381858084050820}
   m_Layer: 6
   m_Name: Ranged Enemy
   m_TagString: Untagged
@@ -220,83 +220,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ExperienceAmount: 50
---- !u!114 &8223068913962617554
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1634057668600800336}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8014d3e7253917a468fcb66b2c8bbd5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Faction: {fileID: 11400000, guid: 496e9fdd2e2c67d4cb5140a5fdaaf1e8, type: 2}
-  Stats:
-  - StatName: Health
-    StatValueCap: Infinity
-    StatDescription: The total amount of damage you can take before dying
-    baseValue: 75
-  - StatName: Mana
-    StatValueCap: Infinity
-    StatDescription: Used to pay mana cost of certain attacks
-    baseValue: 200
-  - StatName: Stamina
-    StatValueCap: Infinity
-    StatDescription: Used to pay stamina cost of certain attacks
-    baseValue: 200
-  - StatName: Melee Proficiency
-    StatValueCap: 50
-    StatDescription: A direct multipler to the power of melee attacks
-    baseValue: 1
-  - StatName: Ranged Proficiency
-    StatValueCap: 50
-    StatDescription: A direct multipler to the power of ranged attacks
-    baseValue: 1
-  - StatName: Mana Proficiency
-    StatValueCap: 50
-    StatDescription: Divides the cost of mana skills by this amount
-    baseValue: 1
-  - StatName: Stamina Proficiency
-    StatValueCap: 50
-    StatDescription: Divides the cost of stamina skills by this amount
-    baseValue: 1
-  - StatName: Attack Speed
-    StatValueCap: 5
-    StatDescription: Divides the time it takes for an attack by this amount
-    baseValue: 1
-  - StatName: Cooldown Reduction
-    StatValueCap: 100
-    StatDescription: A direct multipler to your cooldown times
-    baseValue: 1
-  - StatName: Armor
-    StatValueCap: 500
-    StatDescription: Decreases incoming damage by 0.002% for each point
-    baseValue: 0
-  - StatName: Resistance
-    StatValueCap: 500
-    StatDescription: Decreases the power of hostile attack effects by 0.002% for
-      each point
-    baseValue: 20
-  - StatName: Regeneration
-    StatValueCap: 50
-    StatDescription: Regenerates Health by this amount per second, 3x as much for
-      Mana and Stamina
-    baseValue: 0.5
-  - StatName: Movement Speed
-    StatValueCap: 50
-    StatDescription: The speed at which you move through the world
-    baseValue: 5
-  - StatName: Damage Multipler
-    StatValueCap: 100
-    StatDescription: A direct multipler to your outgoing damage
-    baseValue: 1
-  - StatName: Damage Received
-    StatValueCap: 100
-    StatDescription: A direct multipler to incoming damage
-    baseValue: 1
-  IsDead: 0
 --- !u!195 &1634057668600800344
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -332,7 +255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
-  user: {fileID: 8223068913962617554}
+  user: {fileID: -4437381858084050820}
   navAgent: {fileID: 1634057668600800344}
   meshRenderer: {fileID: 1634057668600800341}
   rb: {fileID: 1634057668600800346}
@@ -362,6 +285,88 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 2, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-4437381858084050820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1634057668600800336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8014d3e7253917a468fcb66b2c8bbd5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Faction: {fileID: 11400000, guid: 496e9fdd2e2c67d4cb5140a5fdaaf1e8, type: 2}
+  Stats:
+  - StatName: Health
+    StatValueCap: Infinity
+    StatDescription: This is the maximum damage you can take before you die
+    baseValue: 75
+  - StatName: Mana
+    StatValueCap: Infinity
+    StatDescription: This is the maximum amount of mana your character can have
+    baseValue: 200
+  - StatName: Stamina
+    StatValueCap: Infinity
+    StatDescription: This is the maximum amount of stamina your character can have
+    baseValue: 200
+  - StatName: Melee Proficiency
+    StatValueCap: 500
+    StatDescription: Each point you acquire will increase the power of your melee
+      attack by 1%
+    baseValue: 1
+  - StatName: Ranged Proficiency
+    StatValueCap: 500
+    StatDescription: Each point you acquire will increase the power of your ranged
+      attack by 1%
+    baseValue: 25
+  - StatName: Mana Proficiency
+    StatValueCap: 100
+    StatDescription: Each point you acquire will reduce the cost of your mana attacks
+      by 1%
+    baseValue: 1
+  - StatName: Stamina Proficiency
+    StatValueCap: 100
+    StatDescription: Each point you acquire will reduce the cost of your stamina
+      attacks by 1%
+    baseValue: 1
+  - StatName: Attack Speed
+    StatValueCap: 500
+    StatDescription: Each point you acquire will increase the speed of your attacks
+      by 1%
+    baseValue: 1
+  - StatName: Cooldown Reduction
+    StatValueCap: 100
+    StatDescription: Each point you acquire will reduce your cooldown times by 1%
+    baseValue: 1
+  - StatName: Armor
+    StatValueCap: 500
+    StatDescription: Each point you acquire will reduce incoming damage by 0.002%
+    baseValue: 0
+  - StatName: Resistance
+    StatValueCap: 500
+    StatDescription: Decreases the power of negative effects by 0.002% for each point
+    baseValue: 50
+  - StatName: Regeneration
+    StatValueCap: 500
+    StatDescription: Health regenerates by this amount per second, while Mana and
+      Stamina regenerate at three times this rate
+    baseValue: 0.5
+  - StatName: Movement Speed
+    StatValueCap: 50
+    StatDescription: This is the speed at which your character moves through the
+      world
+    baseValue: 5
+  - StatName: Damage Multipler
+    StatValueCap: 100
+    StatDescription: This is a direct multiplier to your damage
+    baseValue: 1
+  - StatName: Damage Received
+    StatValueCap: 100
+    StatDescription: This is a direct multiplier to damage you take
+    baseValue: 1
+  IsDead: 0
 --- !u!1 &1634057668620150694
 GameObject:
   m_ObjectHideFlags: 0
@@ -678,7 +683,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statType: 0
   statBarFill: {fileID: 1634057668620150692}
-  user: {fileID: 8223068913962617554}
+  user: {fileID: -4437381858084050820}
   playerLevel: {fileID: 0}
 --- !u!1 &4610865056862380043
 GameObject:
