@@ -15,5 +15,6 @@ MonoBehaviour:
   itemName: Axe
   ItemSprite: {fileID: 21300000, guid: 172774604c1bee84185a69041576525b, type: 3}
   GoldCost: 0
+  GFX: {fileID: 1841531514950717907, guid: 56fa40d8f97ded04db41738621af80d7, type: 3}
   WeaponObject: {fileID: 9171852118721509426, guid: 379aacf6dbd701541af9f80fbefad98e,
     type: 3}

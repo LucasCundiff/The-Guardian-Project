@@ -63,7 +63,7 @@ public class EnemyAI : AIStateMachine
 				break;
 			case AIState.Dead:
 				meshRenderer.material = deadMaterial;
-				rb.detectCollisions = false;
+				navAgent.isStopped = true;
 				break;
 			case AIState.None:
 				break;
@@ -90,7 +90,7 @@ public class EnemyAI : AIStateMachine
 				break;
 			case AIState.Dead:
 				meshRenderer.material = aliveMaterial;
-				rb.detectCollisions = true;
+				navAgent.isStopped = false;
 				break;
 			case AIState.None:
 				break;

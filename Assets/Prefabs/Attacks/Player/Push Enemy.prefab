@@ -113,9 +113,10 @@ MonoBehaviour:
   StaminaCost: 0
   ManaCost: 10
   HealthCost: 0
-  attackSpeed: 1
+  defaultAttackSpeed: 1
   attackCooldown: 0
-  PowerMultiplier: 0.05
+  UseMeleeProficency: 0
+  UseRangedProficency: 0
+  Power: 11
   onTargetHitEffects:
-  - {fileID: 11400000, guid: 7f8e71f052c6dcb418117f6c837217b7, type: 2}
   - {fileID: 11400000, guid: 0a29565f672e32743b8319cbe04500ce, type: 2}

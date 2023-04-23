@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
 
 public class PlayerActionController : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class PlayerActionController : MonoBehaviour
 
 	private void ToggleActionState(InputAction.CallbackContext obj)
 	{
-		if (obj.control.IsPressed())
+		if (obj.interaction is HoldInteraction)
 			ActionHoldSwitch();
 		else
 			ActionPressedSwitch();
@@ -93,7 +94,7 @@ public class PlayerActionController : MonoBehaviour
 				break;
 			case ActionState.Weapon:
 				if (currentActionSlot.CurrentWeapon)
-					objectToInstansiate = currentActionSlot.CurrentWeapon.GetWorldItem();
+					objectToInstansiate = currentActionSlot.CurrentWeapon.WeaponObject.gameObject;
 				break;
 			case ActionState.Skill:
 				if (currentActionSlot.CurrentSkill)

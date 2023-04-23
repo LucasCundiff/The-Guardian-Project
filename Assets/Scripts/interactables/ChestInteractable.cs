@@ -1,22 +1,25 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
-public class ChestInteractable : MonoBehaviour, IInteractable
+public class ChestInteractable : Interactable_ItemContainer, IInteractable
 {
 	[SerializeField] Animator chestAnimator;
 
 	protected string chestAnimatorBoolName = "ChestIsOpen";
 
-	public void Interact()
+	public override void Interact()
 	{
 		chestAnimator.SetBool(chestAnimatorBoolName, true);
-		Destroy(this);
+		base.Interact();
 	}
 
-	public string InteractDescription()
+	public override void ItemContainerClose()
 	{
-		return "Loot Chest";
+		chestAnimator.SetBool(chestAnimatorBoolName, false);
 	}
-
 }

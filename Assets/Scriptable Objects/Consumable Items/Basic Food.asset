@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Stamina Potion
   ItemSprite: {fileID: 21300000, guid: 4a39cb4b272639541b7bd5ac0649acf7, type: 3}
-  weaponGameObject: {fileID: 0}
   GoldCost: 0
+  GFX: {fileID: 4807532384150062796, guid: 1d8ac06651efa884a836d0d3cacbf819, type: 3}
   itemEffects:
   - {fileID: 11400000, guid: 425dbd0dae4985747a5293b09d358709, type: 2}
   - {fileID: 11400000, guid: d90351267dcf5924a81de374be727e2b, type: 2}

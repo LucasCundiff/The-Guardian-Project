@@ -123,7 +123,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""id"": ""88c16831-bbcc-4ac8-a63e-8cfe15d3a061"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Hold,Press"",
+                    ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
@@ -350,7 +350,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""d85b926f-6da9-45b7-ac54-91b4b7003bc5"",
                     ""path"": ""<Keyboard>/tab"",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold,Press"",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Action State Toggle"",

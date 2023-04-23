@@ -17,6 +17,7 @@ public class PlayerItemManager : MonoBehaviour
 	public List<ArmorItem> StartingArmor = new List<ArmorItem>();
 	public List<WeaponItem> StartingWeapons = new List<WeaponItem>();
 
+	[HideInInspector]
 	public ItemSlot DragSlot;
 	public ItemSlot DragSlotUI;
 
@@ -141,6 +142,10 @@ public class PlayerItemManager : MonoBehaviour
 			Inventory.RemoveItem(consumableItem);
 
 			consumableItem.Destroy();
+		}
+		else
+		{
+			Inventory.RemoveItem(_item);
 		}
 	}
 

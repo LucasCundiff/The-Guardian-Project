@@ -15,5 +15,6 @@ MonoBehaviour:
   itemName: Sword
   ItemSprite: {fileID: 21300000, guid: ae496f5dad56ea645b72d374a0376368, type: 3}
   GoldCost: 0
+  GFX: {fileID: 8174568269160684978, guid: 91fcf681308f42742b3580ea3d4fa1fb, type: 3}
   WeaponObject: {fileID: -6214648358912990648, guid: 65aec2c749dd1744c9b5640075141101,
     type: 3}

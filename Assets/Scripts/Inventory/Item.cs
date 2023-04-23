@@ -14,6 +14,7 @@ public class Item : ScriptableObject
 
 	public Sprite ItemSprite;
 	public int GoldCost;
+	[SerializeField] GameObject GFX;
 
 	protected static readonly StringBuilder sb = new StringBuilder();
 
@@ -48,4 +49,6 @@ public class Item : ScriptableObject
 	{
 		return null;
 	}
+
+	public virtual GameObject GetGFX() { return GFX; }
 }
