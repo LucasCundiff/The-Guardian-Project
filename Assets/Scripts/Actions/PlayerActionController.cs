@@ -4,10 +4,9 @@ using UnityEngine.InputSystem.Interactions;
 
 public class PlayerActionController : MonoBehaviour
 {
-	[SerializeField] protected PlayerInputManager playerInputManager;
 	[SerializeField] protected CharacterStats user;
 	[SerializeField] protected ActionBar ActionBar;
-	[SerializeField] protected ActionState currentActionState = ActionState.Unarmed, defaultState = ActionState.Weapon;
+	[SerializeField] protected ActionBarState currentActionState = ActionBarState.Unarmed, defaultState = ActionBarState.Weapon;
 	[SerializeField] protected GameObject unarmedAction;
 	[SerializeField] protected Transform actionSpawnTransform;
 
@@ -16,7 +15,7 @@ public class PlayerActionController : MonoBehaviour
 
 	private void Start()
 	{
-		playerInputManager.PlayerInput.Player.ActionStateToggle.performed += ToggleActionState;
+		PlayerInputManager.Instance.PlayerInput.Player.ActionStateToggle.performed += ToggleActionState;
 		ActionBar.OnActionSlotChanged += SetActionSlot;
 		LoadAction();
 	}
@@ -33,14 +32,14 @@ public class PlayerActionController : MonoBehaviour
 	{
 		switch (currentActionState)
 		{
-			case ActionState.Unarmed:
+			case ActionBarState.Unarmed:
 				SetActionState(defaultState);
 				break;
-			case ActionState.Weapon:
-				SetActionState(ActionState.Skill);
+			case ActionBarState.Weapon:
+				SetActionState(ActionBarState.Skill);
 				break;
-			case ActionState.Skill:
-				SetActionState(ActionState.Weapon);
+			case ActionBarState.Skill:
+				SetActionState(ActionBarState.Weapon);
 				break;
 			default:
 				break;
@@ -49,12 +48,12 @@ public class PlayerActionController : MonoBehaviour
 
 	private void ActionHoldSwitch()
 	{
-		if (currentActionState == ActionState.Unarmed)
+		if (currentActionState == ActionBarState.Unarmed)
 			SetActionState(defaultState);
 		else
 		{
 			defaultState = currentActionState;
-			SetActionState(ActionState.Unarmed);
+			SetActionState(ActionBarState.Unarmed);
 		}
 	}
 
@@ -64,7 +63,7 @@ public class PlayerActionController : MonoBehaviour
 		LoadAction();
 	}
 
-	private void SetActionState(ActionState actionState)
+	private void SetActionState(ActionBarState actionState)
 	{
 		if (currentActionState == actionState) return;
 
@@ -88,15 +87,15 @@ public class PlayerActionController : MonoBehaviour
 
 		switch (currentActionState)
 		{
-			case ActionState.Unarmed:
+			case ActionBarState.Unarmed:
 				if (unarmedAction)
 					objectToInstansiate = unarmedAction;
 				break;
-			case ActionState.Weapon:
+			case ActionBarState.Weapon:
 				if (currentActionSlot.CurrentWeapon)
 					objectToInstansiate = currentActionSlot.CurrentWeapon.WeaponObject.gameObject;
 				break;
-			case ActionState.Skill:
+			case ActionBarState.Skill:
 				if (currentActionSlot.CurrentSkill)
 					objectToInstansiate = currentActionSlot.CurrentSkill.SkillGameObject.gameObject;
 				break;
@@ -107,7 +106,7 @@ public class PlayerActionController : MonoBehaviour
 		if (objectToInstansiate)
 		{
 			actionGameObject = Instantiate(objectToInstansiate, actionSpawnTransform);
-			actionGameObject.GetComponent<BaseAction>()?.InitializeAction(playerInputManager, user);
+			actionGameObject.GetComponent<BaseAction>()?.InitializeAction(user);
 		}
 	}
 } 

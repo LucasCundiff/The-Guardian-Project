@@ -39,7 +39,7 @@ public class InteractableUI_ItemContainerWindow : MonoBehaviour
 
 	public void OpenWindow(List<Item> items, Interactable_ItemContainer source)
 	{
-		WindowState(true);
+		itemContainerWindowObject.SetActive(true);
 		itemsSource = source;
 
 		if (items != null && source)
@@ -54,9 +54,9 @@ public class InteractableUI_ItemContainerWindow : MonoBehaviour
 
 	public void CloseWindow()
 	{
-		WindowState(false);
+		itemContainerWindowObject.SetActive(false);
 		ClearItems();
-		itemsSource.ItemContainerClose();
+		itemsSource?.ItemContainerClose();
 
 		itemsSource = null;
 	}
@@ -67,14 +67,6 @@ public class InteractableUI_ItemContainerWindow : MonoBehaviour
 		{
 			itemSlot.Item = null;
 		}
-	}
-
-	private void WindowState(bool state)
-	{
-		Time.timeScale = state ? 0 : 1f;
-		Cursor.lockState = state ? CursorLockMode.None : CursorLockMode.Locked;
-		Cursor.visible = state;
-		itemContainerWindowObject.SetActive(state);
 	}
 
 	public void LootItem(ItemSlot itemSlot)

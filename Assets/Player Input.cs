@@ -465,7 +465,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Character Panel Toggle"",
+                    ""name"": ""WindowToggle"",
                     ""type"": ""Button"",
                     ""id"": ""725343cf-9c97-42b0-8359-2d947812e7da"",
                     ""expectedControlType"": ""Button"",
@@ -900,7 +900,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Character Panel Toggle"",
+                    ""action"": ""WindowToggle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -996,7 +996,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
-        m_UI_CharacterPanelToggle = m_UI.FindAction("Character Panel Toggle", throwIfNotFound: true);
+        m_UI_WindowToggle = m_UI.FindAction("WindowToggle", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1187,7 +1187,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_RightClick;
     private readonly InputAction m_UI_TrackedDevicePosition;
     private readonly InputAction m_UI_TrackedDeviceOrientation;
-    private readonly InputAction m_UI_CharacterPanelToggle;
+    private readonly InputAction m_UI_WindowToggle;
     public struct UIActions
     {
         private @PlayerInput m_Wrapper;
@@ -1202,7 +1202,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @RightClick => m_Wrapper.m_UI_RightClick;
         public InputAction @TrackedDevicePosition => m_Wrapper.m_UI_TrackedDevicePosition;
         public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
-        public InputAction @CharacterPanelToggle => m_Wrapper.m_UI_CharacterPanelToggle;
+        public InputAction @WindowToggle => m_Wrapper.m_UI_WindowToggle;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1242,9 +1242,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @TrackedDeviceOrientation.started -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceOrientation;
                 @TrackedDeviceOrientation.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceOrientation;
                 @TrackedDeviceOrientation.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceOrientation;
-                @CharacterPanelToggle.started -= m_Wrapper.m_UIActionsCallbackInterface.OnCharacterPanelToggle;
-                @CharacterPanelToggle.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnCharacterPanelToggle;
-                @CharacterPanelToggle.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnCharacterPanelToggle;
+                @WindowToggle.started -= m_Wrapper.m_UIActionsCallbackInterface.OnWindowToggle;
+                @WindowToggle.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnWindowToggle;
+                @WindowToggle.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnWindowToggle;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -1279,9 +1279,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @TrackedDeviceOrientation.started += instance.OnTrackedDeviceOrientation;
                 @TrackedDeviceOrientation.performed += instance.OnTrackedDeviceOrientation;
                 @TrackedDeviceOrientation.canceled += instance.OnTrackedDeviceOrientation;
-                @CharacterPanelToggle.started += instance.OnCharacterPanelToggle;
-                @CharacterPanelToggle.performed += instance.OnCharacterPanelToggle;
-                @CharacterPanelToggle.canceled += instance.OnCharacterPanelToggle;
+                @WindowToggle.started += instance.OnWindowToggle;
+                @WindowToggle.performed += instance.OnWindowToggle;
+                @WindowToggle.canceled += instance.OnWindowToggle;
             }
         }
     }
@@ -1358,6 +1358,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnRightClick(InputAction.CallbackContext context);
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
-        void OnCharacterPanelToggle(InputAction.CallbackContext context);
+        void OnWindowToggle(InputAction.CallbackContext context);
     }
 }

@@ -7,7 +7,6 @@ using UnityEngine.InputSystem;
 public class ActionBar : MonoBehaviour
 {
 	public ActionBarSetup ActionBarSetup;
-	public PlayerInputManager PlayerInputManager;
 
 	public int CurrentActionIndex;
 	public List<ActionSlot> ActionSlots = new List<ActionSlot>();
@@ -18,10 +17,10 @@ public class ActionBar : MonoBehaviour
 	{
 		ActionBarSetup.OnActionBarSetupUpdated += UpdateActionBar;
 
-		PlayerInputManager.PlayerInput.Player.Action1.performed += input => SetCurrentActionSlot(input, 0);
-		PlayerInputManager.PlayerInput.Player.Action2.performed += input => SetCurrentActionSlot(input, 1);
-		PlayerInputManager.PlayerInput.Player.Action3.performed += input => SetCurrentActionSlot(input, 2);
-		PlayerInputManager.PlayerInput.Player.Action4.performed += input => SetCurrentActionSlot(input, 3);
+		PlayerInputManager.Instance.PlayerInput.Player.Action1.performed += input => SetCurrentActionSlot(input, 0);
+		PlayerInputManager.Instance.PlayerInput.Player.Action2.performed += input => SetCurrentActionSlot(input, 1);
+		PlayerInputManager.Instance.PlayerInput.Player.Action3.performed += input => SetCurrentActionSlot(input, 2);
+		PlayerInputManager.Instance.PlayerInput.Player.Action4.performed += input => SetCurrentActionSlot(input, 3);
 
 		UpdateActionBar();
 	}

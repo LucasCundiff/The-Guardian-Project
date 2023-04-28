@@ -4,8 +4,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-	[SerializeField] PlayerInputManager playerInput;
-
 	[SerializeField] float movementSpeed;
 	[SerializeField] Rigidbody playerRigidbody;
 	[SerializeField] Transform playerOrientation;
@@ -15,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
 
 	private void Update()
 	{
-		playerMoveInputValue = playerInput.PlayerInput.Player.Move.ReadValue<Vector2>();
+		playerMoveInputValue = PlayerInputManager.Instance.PlayerInput.Player.Move.ReadValue<Vector2>();
 		moveDirection = playerOrientation.forward * playerMoveInputValue.y + playerOrientation.right * playerMoveInputValue.x;
 	}
 	public void FixedUpdate()

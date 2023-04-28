@@ -3,50 +3,23 @@ using UnityEngine.InputSystem;
 
 public class PlayerUIToggle : MonoBehaviour
 {
-	[SerializeField] PlayerInputManager playerInputManager;
-	[SerializeField] GameObject characterPanel, generalUI;
-	[SerializeField] bool StartOpen;
+	[SerializeField] GameObject characterPanel;
 
 	public void Awake()
 	{
-		ToggleCharacterPanel(true);
+		PlayerInputManager.Instance.PlayerInput.UI.WindowToggle.performed += EnableCharacterWindow;
+
+		characterPanel.SetActive(true);
 	}
 
 	public void Start()
 	{
-		playerInputManager.PlayerInput.UI.CharacterPanelToggle.performed += ToggleEventHelper;
-
-		ToggleCharacterPanel(StartOpen);
-
-		if (!StartOpen)
-		{
-			Cursor.lockState = CursorLockMode.Locked;
-			Cursor.visible = false;
-		}
+		characterPanel.SetActive(false);
 	}
 
-	public void ToggleCharacterPanel(bool state)
+	private void EnableCharacterWindow(InputAction.CallbackContext obj)
 	{
-		if (characterPanel)
-		{
-			characterPanel.SetActive(state);
-			generalUI.SetActive(!state);
-
-			Cursor.lockState = state ? CursorLockMode.None : CursorLockMode.Locked;
-			Cursor.visible = state;
-
-			Time.timeScale = state ? 0f : 1f;
-		}
-	}
-
-	private void OnDisable()
-	{
-		Cursor.lockState = CursorLockMode.None;
-		Cursor.visible = true;
-	}
-
-	public void ToggleEventHelper(InputAction.CallbackContext context)
-	{
-		ToggleCharacterPanel(!characterPanel.activeSelf);
+		if (GameStateManager.Instance.CurrentState is GameState_Default)
+			characterPanel.SetActive(true);
 	}
 }

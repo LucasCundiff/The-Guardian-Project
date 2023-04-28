@@ -443,7 +443,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Character Panel Toggle",
+                    "name": "WindowToggle",
                     "type": "Button",
                     "id": "725343cf-9c97-42b0-8359-2d947812e7da",
                     "expectedControlType": "Button",
@@ -878,7 +878,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Character Panel Toggle",
+                    "action": "WindowToggle",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

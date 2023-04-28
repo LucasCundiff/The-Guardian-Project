@@ -53,10 +53,10 @@ public class BaseAttack : MonoBehaviour
 
 	public virtual bool HasAttackPrerequisite()
 	{
+		if (GameStateManager.Instance.CurrentState is GameState_Paused) return false;
+
 		if (attackCooldown > 0 && PlayerCooldownTracker.Instance.IsAttackOnCooldown(this))
-		{
 			return false;
-		}
 
 		if (User.CurrentStamina < GetStaminaCost())
 			return false;

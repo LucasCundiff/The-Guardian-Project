@@ -9,7 +9,6 @@ public class PlayerInteraction : MonoBehaviour
 {
 	[SerializeField] float interactDistance;
 	[SerializeField] LayerMask interactLayer;
-	[SerializeField] PlayerInputManager playerInput;
 	[SerializeField] CharacterStats player;
 	[SerializeField] TextMeshProUGUI interactionText;
 	[SerializeField] GameObject interactionTextParent;
@@ -18,7 +17,7 @@ public class PlayerInteraction : MonoBehaviour
 
 	protected void Start()
 	{
-		playerInput.PlayerInput.Player.Interact.performed += Interact;
+		PlayerInputManager.Instance.PlayerInput.Player.Interact.performed += Interact;
 	}
 
 	private void Interact(InputAction.CallbackContext context)

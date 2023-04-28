@@ -6,6 +6,15 @@ public class PlayerInputManager : MonoBehaviour
 {
 	public PlayerInput PlayerInput;
 	public CharacterStats Player;
+	public static PlayerInputManager Instance;
+
+	private void Awake()
+	{
+		if (Instance != null)
+			Destroy(Instance);
+
+		Instance = this;
+	}
 
 	private void Start()
 	{

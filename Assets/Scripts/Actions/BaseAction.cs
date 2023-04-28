@@ -19,14 +19,14 @@ public class BaseAction : MonoBehaviour
 
 	public bool IsAttacking { get; private set; }
 
-	public void InitializeAction(PlayerInputManager input, CharacterStats characterStats)
+	public void InitializeAction(CharacterStats characterStats)
 	{
 		User = characterStats;
 
-		Primary?.InitializeAttack(input.PlayerInput.Player.Primary, this, User);
-		Secondary?.InitializeAttack(input.PlayerInput.Player.Secondary, this, User);
-		Tertiary?.InitializeAttack(input.PlayerInput.Player.Tertiary, this, User);
-		Quaternary?.InitializeAttack(input.PlayerInput.Player.Quaternary, this, User);
+		Primary?.InitializeAttack(PlayerInputManager.Instance.PlayerInput.Player.Primary, this, User);
+		Secondary?.InitializeAttack(PlayerInputManager.Instance.PlayerInput.Player.Secondary, this, User);
+		Tertiary?.InitializeAttack(PlayerInputManager.Instance.PlayerInput.Player.Tertiary, this, User);
+		Quaternary?.InitializeAttack(PlayerInputManager.Instance.PlayerInput.Player.Quaternary, this, User);
 	}
 
 	public void DeinitializeAction()

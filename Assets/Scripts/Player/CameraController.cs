@@ -4,8 +4,6 @@ using UnityEngine.InputSystem;
 
 public class CameraController : MonoBehaviour
 {
-	[SerializeField] PlayerInputManager playerInput;
-
 	[SerializeField] Vector2 mouseSensitivty;
 	[SerializeField] Vector2 verticalRotationClamp;
 	[SerializeField] Transform currentCamera;
@@ -16,8 +14,8 @@ public class CameraController : MonoBehaviour
 
 	public void Start()
 	{
-		playerInput.PlayerInput.Player.Look.performed += UpdateCameraRotation;
-		playerInput.PlayerInput.Player.Look.performed += UpdateCharacterRotation;
+		PlayerInputManager.Instance.PlayerInput.Player.Look.performed += UpdateCameraRotation;
+		PlayerInputManager.Instance.PlayerInput.Player.Look.performed += UpdateCharacterRotation;
 	}
 
 	public void UpdateCameraRotation(InputAction.CallbackContext context)

@@ -54,11 +54,18 @@ public enum DamageType
 	Necrotic, //Decreases max health by x% for x seconds
 }
 
-public enum ActionState
+public enum ActionBarState
 {
 	Unarmed,
 	Weapon,
 	Skill,
+}
+
+public enum GameState
+{
+	standard,
+	itemContainerWindowOpen,
+	characterWindowOpen,
 }
 
 public enum AIState
